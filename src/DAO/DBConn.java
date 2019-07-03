@@ -11,7 +11,7 @@ public class DBConn {
 	// Connection对象（链接）
 	// 连接数据库
 	public static Connection getConn() {
-		try {
+		try {			
 			// 加载注册SQLSever的JDBC驱动
 			Class.forName("com.mysql.jdbc.Driver");
 			// 编写链接字符串，创建并且获取链接

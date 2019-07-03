@@ -33,9 +33,11 @@ public class LeaveMessage extends HttpServlet {
 		// 获取message内容				
 		String message=request.getParameter("message");				
 		// 从session中取出当前用户对象				
-		Login leaveMessageBoard=(Login) request.getSession().getAttribute("login");				
+		Login leaveMessageBoard=(Login) request.getSession().getAttribute("login");	
+		System.out.println(leaveMessageBoard);
 		// 建立留言表对应JavaBean对象，把数据封装进去				
-		MessBor mb=new MessBor();				
+		MessBor mb=new MessBor();
+		System.out.println(leaveMessageBoard.getId());
 		mb.setId(leaveMessageBoard.getId());				
 		// 参数为获取的当前时间				
 		mb.setName(leaveMessageBoard.getName());				

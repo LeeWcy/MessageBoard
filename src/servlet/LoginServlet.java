@@ -33,13 +33,16 @@ public class LoginServlet extends HttpServlet {
 		// 先获得user对象，如果是第一次访问该Servlet，用户对象肯定为空，
 		//但如果是第二次甚至是第三次，就不应该再判断该用户的信息
 		Login l = (Login) session.getAttribute("login");
-		if (l == null)
+		if (l == null) {
 			l = loginDao.checkLogin(request.getParameter("name"), request.getParameter("password"));
+			System.out.println("session为空,验证登陆");
+		}
+		System.out.println("session的login对象："+l);
 		if (l != null) {
 			// 如果登陆成功
 			session.setAttribute("login", l);
 			// 将获取的对象保存在session中
-			ArrayList al = loginDao.findMbInfo();
+			ArrayList al = loginDao.findMbInfo(null);
 			// 获取留言板的内容，返回一个数组
 			session.setAttribute("al", al);
 			// 把数组保存起来
