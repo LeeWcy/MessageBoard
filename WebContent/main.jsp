@@ -13,6 +13,18 @@
 	<div
 		style="margin-left: 35%; margin-top: 100px; font-family: Microsoft YaHei">
 		<h1 style="margin-left: 5%">这里是留言板主界面</h1>
+		<form action="NameSearchServerlet" method="post">
+			<label>按用户搜索：</label>
+			<input type="text" name="search_by_name"/>
+			<input type="submit" value="搜索"/>
+		</form>
+		<form action="LikeSearchServerlet" method="post">
+			<label>按关键字搜索：</label>
+			<input type="text" name="search_by_key"/>
+			<input type="submit" value="搜索"/>
+		</form>
+		<form action="OrderByTimeServerlet"><button type="submit">按注册时间排序</button></form>
+		<form action="OrderByReplyNumServerlet"><button type="submit">按回复数排序</button></form>
 		<form action="leavemessage.jsp" method="post">
 			<table border="1">
 				<caption>所有留言信息</caption>

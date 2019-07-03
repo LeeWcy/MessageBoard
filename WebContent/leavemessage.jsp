@@ -21,7 +21,8 @@
 					<td><textarea name="message" rows="5" cols="35"></textarea></td>
 				</tr>
 			</table>
-			<input type="submit" value="提交" /> <input type="reset" value="重置" />
+			<input type="submit" value="提交" /> 
+			<input type="reset" value="重置" />
 		</form>
 		<a href="main.jsp">返回留言板界面</a>
 	</div>

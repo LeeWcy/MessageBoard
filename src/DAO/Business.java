@@ -6,35 +6,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class LoginDao {
+public class Business {
 	Connection conn = DBConn.getConn();
 	// 数据库连接对象
 	PreparedStatement pstmt;
 
-	public Login checkLogin(String name, String password) {
-		// 验证用户名密码
+	public ArrayList<MessBor> OrderByTime() {
 		try {
-			pstmt = conn.prepareStatement("select* from logins where name=?and password=?");
-			pstmt.setString(1, name);
-			// 设置SQL语句参数
-			pstmt.setString(2, password);
-			// 设置SQL语句参数
+			ArrayList<MessBor> al = new ArrayList<MessBor>();
+			pstmt = conn.prepareStatement("select * from messages ORDER BY time");
 			ResultSet rs = pstmt.executeQuery();
-			// 执行查询，返回结果集
-			if (rs.next()) {
-				// 通过JavaBean保存值
-				Login login = new Login();
-				login.setId(rs.getInt(1));
-				login.setName(rs.getString(2));
-				login.setPassword(rs.getString(3));
-				login.setRole(rs.getInt(4));
-				System.out.println("登录成功");
-				return login;
-				// 返回JavaBean对象
+			while (rs.next()) {
+				MessBor mb = new MessBor();
+				mb.setId(rs.getInt(1));
+				mb.setName(rs.getString(2));
+				mb.setTime(rs.getDate(3));
+				mb.setTitle(rs.getString(4));
+				mb.setMessage(rs.getString(5));
+				al.add(mb);
 			}
-			System.out.println("登录失败");
-			return null;
-			// 验证失败返回null
+			return al;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

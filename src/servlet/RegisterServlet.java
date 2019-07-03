@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +29,12 @@ public class RegisterServlet extends HttpServlet {
 		int id = Integer.valueOf(request.getParameter("id"));
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
-		if (new LoginDao().insertUser(id, name, password)) {
+		Date time = new Date(System.currentTimeMillis());
+		if (new LoginDao().insertUser(id, name, password,time)) {
 			response.sendRedirect("login.jsp");
+		}
+		else {
+			System.out.println("没有执行插入语句");
 		}
 	}
 
