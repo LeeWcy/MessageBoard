@@ -42,11 +42,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
     <!--nav-->
     <div id="nav">
-<<<<<<< HEAD
-        <ul>
-         <li><a  href="index.jsp">首页</a></li>
-		 <li><a href="MessageView.jsp">留言列表</a></li>
-=======
         <%
     		int tag=-1;
     		if (l == null){
@@ -57,7 +52,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <ul>
          <li><a href="index.jsp">首页</a></li>
 		<li><a href="<%-- <%=flag %> --%>MessageView">留言列表</a></li>
->>>>>>> db0b10b373be5f110a5178c2629d52bd218d2a99
          <li><a href="guestbook.jsp">发表留言</a></li>
          <li><a href="lianjie.jsp">友情链接</a></li>
          <% if(tag == -1){ %>
