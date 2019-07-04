@@ -3,9 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@page import="dao.*" %>
-<%@page import="dao.MessageDao.*" %>
-<%@page import="bean.*" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -35,38 +33,13 @@ function reloadImage(t){
      <!--header end-->
     <!--nav-->
     <div id="nav">
-    	<%
-    		
-
-    		LoginBean l = (LoginBean) session.getAttribute("login");
-    		if(l != null)
-    		{
-    			response.sendRedirect("index.jsp");
-    		}
-    		int tag=-1;
-    		if (l == null){
-    		}else{
-    			tag = l.getAuth();
-    		}
-    		
-    	%>
         <ul>
-         <li><a href="index.jsp">首页</a></li>
-		<li><a href="<%-- <%=flag %> --%>MessageView">留言列表</a></li>
+         <li><a  href="index.jsp">首页</a></li>
+		 <li><a href="MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
          <li><a href="lianjie.jsp">友情链接</a></li>
-         <% if(tag == -1){ %>
          <li><a href="UserLogin.jsp">用户登录</a></li>
-         <%} %>
-         <% if(tag == 1){%>
-         <li><a href="LogoutServlet">退出登录</a></li>
-         <%} %>
-         <% if(tag == 0){%>
-         <li><a href="LogoutServlet">退出登录</a></li>
-         <%} %>
-         <%if(tag == -1){ %>
-         <li><a href="login.jsp">管理员登录</a></li>
-         <%} %>
+          <li><a href="login.jsp">管理员登录</a></li>
          <div class="clear"></div>
         </ul>
      </div>
@@ -76,15 +49,19 @@ function reloadImage(t){
        <!--left-->
          <div class="left">
            <div class="weizi" ">
-           <div class="wz_text">当前位置：<a href="index.jsp">首页</a>><h1>管理员登录</h1></div>
+           <div class="wz_text">当前位置：<a href="index.jsp">首页</a>><h1>用户注册</h1></div>
            </div>
            <div class="wz1">
             <center>
           <table style="margin-top: 30px font-size:20px">
-          <form action="LoginServlet1" method="post">
+          <form action="SignUpServlet" method="post">
            		<tr>
            			<th>用户名</th>
-           			<td> <input type="text" name="name"required placeholder="默认为admin"></td>
+           			<td> <input type="text" name="account"required></td>
+           		</tr>
+           		<tr>
+           			<th>昵称</th>
+           			<td> <input type="text" name="name"required></td>
            		</tr>
               <tr>
               	<th>密码：</th>
@@ -95,7 +72,7 @@ function reloadImage(t){
               	<td><input type="text" name="authcode"required placeholder="验证码"/></td>
             	</tr>
                <div class="clear"></div>
-               <th colspan="2"align="center"><input type="submit" value="登录" onclick="text()" /></th>
+               <th colspan="2"align="center"><input type="submit" value="注册"  /></th>
           </form>
           </table></center>
           </div>

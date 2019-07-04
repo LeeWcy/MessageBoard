@@ -14,21 +14,20 @@ import bean.LoginBean;
 import bean.MessageBean;
 import dao.MessageDao;
 
-public class LoginServlet1 extends HttpServlet {
-
+public class LoginServletUser extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		request.setCharacterEncoding("gb2312"); 
-		response.setContentType("gb2312"); 
-		String adminName = request.getParameter("name");
+		request.setCharacterEncoding("gb2312");
+		response.setContentType("gb2312");
+		String adminName = request.getParameter("account");
 		String password = request.getParameter("password");
 		String authCode = request.getParameter("authcode");
 		String piccode = request.getSession().getAttribute("piccode")
 				.toString();
 		LoginBean login = new LoginBean();
 		MessageDao logindao = new MessageDao();
-		login = logindao.checklogin(adminName, password);
+		login = logindao.checkuserlogin(adminName, password);
 		if (login != null && authCode.equals(piccode)) {
 			List<MessageBean> list = new ArrayList<MessageBean>();
 			list = logindao.getMessages();
@@ -47,5 +46,4 @@ public class LoginServlet1 extends HttpServlet {
 
 		doGet(request, response);
 	}
-
 }

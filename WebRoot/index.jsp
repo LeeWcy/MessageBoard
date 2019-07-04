@@ -26,12 +26,31 @@
      <!--header end-->
     <!--nav-->
      <div id="nav">
+     <%
+    		int tag=-1;
+    		LoginBean l = (LoginBean) session.getAttribute("login");
+    		if (l == null){
+    		}else{
+    			tag = l.getAuth();
+    		}
+      %>
          <ul>
          <li><a href="index.jsp">首页</a></li>
 		<li><a href="<%-- <%=flag %> --%>MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
          <li><a href="lianjie.jsp">友情链接</a></li>
-          <li><a href="login.jsp">管理员登录</a></li>
+         <% if(tag == -1){ %>
+         <li><a href="UserLogin.jsp">用户登录</a></li>
+         <%} %>
+         <% if(tag == 1){%>
+         <li><a href="LogoutServlet">退出登录</a></li>
+         <%} %>
+         <% if(tag == 0){%>
+         <li><a href="LogoutServlet">退出登录</a></li>
+         <%} %>
+         <%if(tag == -1){ %>
+         <li><a href="login.jsp">管理员登录</a></li>
+         <%} %>
          <div class="clear"></div>
         </ul>
       </div>

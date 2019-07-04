@@ -40,6 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<li><a href="MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
          <li><a href="lianjie.jsp">友情链接</a></li>
+         <li><a href="UserLogin.jsp">用户登录</a></li>
           <li><a href="login.jsp">管理员登录</a></li>
          <div class="clear"></div>
         </ul>
