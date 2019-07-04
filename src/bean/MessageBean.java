@@ -3,7 +3,7 @@ package bean;
 public class MessageBean {
 	private int ID;
 	private String Name, MessageThem, MessgaeTitle, MessageContent,
-			MessageReply, date1, replyDate;
+			MessageReply, date1, replyDate,account;
 
 	public String getDate1() {
 		return date1;
@@ -67,6 +67,14 @@ public class MessageBean {
 
 	public void setReplyDate(String replyDate) {
 		this.replyDate = replyDate;
+	}
+	
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
 }

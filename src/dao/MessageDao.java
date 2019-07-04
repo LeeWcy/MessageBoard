@@ -33,7 +33,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb);// 灏嗙暀瑷�鍒楄〃鐨刡ean娣诲姞鍒伴泦鍚堢被涓�
+				messageList.add(mb);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,7 +49,7 @@ public class MessageDao {
 		int re = 0;
 		try {
 			con = DBconn.getConn();
-			sql = "insert into message(Name,MessageThem,MessageTitle,MessageContent,udate) "
+			sql = "insert into message(Name,MessageThem,MessageTitle,MessageContent,udate,account) "
 					+ "value("
 					+ "'"
 					+ messagebean.getName()
@@ -68,7 +68,11 @@ public class MessageDao {
 					+ "'"
 					+ ","
 					+ "'"
-					+ messagebean.getDate1() + "'" + ")";
+					+ messagebean.getDate1()
+					+ "'"
+					+ ","
+					+ "'"
+					+ messagebean.getAccount() + "'" + ")";
 			pstmt = con.prepareStatement(sql);
 			re = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -109,7 +113,8 @@ public class MessageDao {
 					+ messagebean.getMessageContent() + "',MessageReply='"
 					+ messagebean.getMessageReply() + "',udate='"
 					+ messagebean.getDate1() + "',replydate='"
-					+ messagebean.getReplyDate() + "' where id='" + id + "'";
+					+ messagebean.getReplyDate() + "',MessageTitle='"
+					+ messagebean.getMessgaeTitle()+"' where id='" + id + "'";
 			pstmt = con.prepareStatement(sql);
 			re = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -326,6 +331,7 @@ public class MessageDao {
 
 				login.setAdminName(rs.getString(1));
 				login.setPassword(rs.getString(2));
+				login.setAccount(rs.getString(4));
 				login.setAuth(0);
 				return login;
 			}
@@ -351,6 +357,7 @@ public class MessageDao {
 
 				login.setAdminName(rs.getString(2));
 				login.setPassword(rs.getString(3));
+				login.setAccount(rs.getString(4));
 				login.setAuth(1);
 
 				return login;

@@ -26,15 +26,15 @@ public class MessageView extends HttpServlet {
 			pageNo = _pageNo;
 		}
 		int pageNo1 = Integer.parseInt(pageNo);
-		int count = note.getCount();// 获取总条数;
-		int num = 5;// 每页显示三条
+		int count = note.getCount();
+		int num = 5;
 		int page = (int) Math.ceil(count * 1.0 / num);
-		request.setAttribute("page", page);// 将总条数传到jsp页面
+		request.setAttribute("page", page);
 		request.setAttribute("pageNo", pageNo);
 		try {
 			List<MessageBean> list = note.getMessagesByPage(pageNo1, num);
 			request.setAttribute("message", list);
-			if (login != null) {
+			if (login != null && login.getAuth()==0) {
 				request.getRequestDispatcher("messageView.jsp").forward(
 						request, response);
 			} else
