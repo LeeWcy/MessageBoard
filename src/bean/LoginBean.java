@@ -1,7 +1,7 @@
 package bean;
 
 public class LoginBean {
-	String adminName, password;
+	String adminName, password,account;
 	int auth;
 	public String getAdminName() {
 		return adminName;
@@ -23,5 +23,11 @@ public class LoginBean {
 	}
 	public void setAuth(int a) {
 		this.auth = a;
+	}
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
 	}
 }

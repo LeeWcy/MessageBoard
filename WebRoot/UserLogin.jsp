@@ -17,7 +17,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
 <script type="text/javascript" src="js/jquery1.42.min.js"></script>
 <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
-
+<%
+	LoginBean l = (LoginBean) session.getAttribute("login");
+ 		if (l != null){
+ 			response.sendRedirect("index.jsp");
+ 		}
+ %>
 <script type="text/javascript">
 function reloadImage(t){
 	t.src="./ImageServlet?flag="+Math.random();

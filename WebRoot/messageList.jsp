@@ -18,6 +18,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <% int pageNo=Integer.parseInt( request.getAttribute("pageNo").toString());
 	int pageLa=Integer.parseInt(request.getAttribute("page").toString()); %>
+<%
+	LoginBean l = (LoginBean) session.getAttribute("login");
+ 		if (l == null){
+ 			response.sendRedirect("index.jsp");
+ 		}else{
+ 			if(l.getAuth()==0){
+ 				response.sendRedirect("MessageView");
+ 			}
+ 		}
+%>
 <body>
     <!--header start-->
     <div id="header">
@@ -29,12 +39,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="nav">
         <ul>
         
+         <ul>
+        
          <li><a  href="index.jsp">首页</a></li>
 		 <li><a href="MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
-         <li><a href="lianjie.jsp">友情链接</a></li>
-         <li><a href="UserLogin.jsp">用户登录</a></li>
-          <li><a href="login.jsp">管理员登录</a></li>
+          <li><a href="LogoutServlet">退出登录</a></li>
    	<form action="MessageList" method="post">
    		<input type="text" name="search" id="search"/>
    		<input type="submit" value="搜索" />
