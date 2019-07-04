@@ -75,7 +75,7 @@ function reloadImage(t){
     <div id="content">
        <!--left-->
          <div class="left">
-           <div class="weizi" ">
+           <div class="weizi">
            <div class="wz_text">当前位置：<a href="index.jsp">首页</a>><h1>管理员登录</h1></div>
            </div>
            <div class="wz1">

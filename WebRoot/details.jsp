@@ -38,14 +38,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="content_text">
            <!--wz-->
            <div class="wz">
-            <h3><%=bean2.getMessgaeTitle() %></h3>
+            <h3>标题：<%=bean2.getMessgaeTitle() %></h3>
              <dl>
              
                <dd>
-                 <p class="dd_text_1"><%=bean2.getMessageContent() %>></p>
+                 <p class="dd_text_1">内容：<%=bean2.getMessageContent() %>></p>
                <p class="dd_text_1">回复：<%=bean2.getMessageReply() %></br>回复时间:  <%=bean2.getReplyDate() %></p>
                <p class="dd_text_2">
-               <span class="left author"><%=bean2.getName() %></span><span class="left sj"><%=bean2.getDate1() %></span>
+               <span class="left author">作者：<%=bean2.getName() %>   </span><span class="left sj">时间：<%=bean2.getDate1() %></span>
                <span class="left fl">主题：<%=bean2.getMessageThem() %></span><span class="left yd"><a href="MessageView" title="返回">返回</a>
                </span>
                 <span class="left yd">

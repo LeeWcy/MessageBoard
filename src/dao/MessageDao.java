@@ -85,6 +85,7 @@ public class MessageDao {
 		return re;
 	}
 
+
 	public int delete(int id) {
 		int re = 0;
 		try {
@@ -101,6 +102,7 @@ public class MessageDao {
 		}
 		return re;
 	}
+
 
 	public int updata(MessageBean messagebean, int id) {
 		int re = 0;
@@ -124,6 +126,7 @@ public class MessageDao {
 		}
 		return re;
 	}
+
 
 	public int reply(MessageBean messagebean, int id) {
 		int re = 0;
@@ -181,6 +184,44 @@ public class MessageDao {
 		return messageList;
 	}
 
+	public List<MessageBean> OrderByTime(String method) {
+		// TODO Auto-generated method stub
+		List<MessageBean> messageList = new ArrayList<MessageBean>();
+		try {
+			con = DBconn.getConn();
+			//按留言时间查询
+			if(method == "asc") {
+				//升序
+				pstmt = con.prepareStatement("select * from message ORDER BY udate asc");
+			}else if (method == "desc") {
+				//降序
+				pstmt = con.prepareStatement("select * from message ORDER BY udate desc");
+			}
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+			while (rs.next()) {
+				MessageBean mb = new MessageBean();
+				mb.setID(rs.getInt("id"));
+				mb.setName(rs.getString("Name"));
+				mb.setMessageThem(rs.getString("MessageThem"));
+				mb.setMessgaeTitle(rs.getString("MessageTitle"));
+				mb.setMessageContent(rs.getString("MessageContent"));
+				mb.setMessageReply(rs.getString("MessageReply"));
+				mb.setDate1(rs.getString("udate"));
+				mb.setReplyDate(rs.getString("replydate"));
+				messageList.add(mb); 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBconn.closeResultSet(rs);
+			DBconn.closeStatement(pstmt);
+			DBconn.CloseConn();
+		}
+		return messageList;
+	}
+	
+	
 	public List<MessageBean> FindByString(String keyword) {
 		// TODO Auto-generated method stub
 		List<MessageBean> messageList = new ArrayList<MessageBean>();
@@ -192,8 +233,11 @@ public class MessageDao {
 			// +
 			// "or Name like ? or MessageThem like ? or MessageContent like ? or MessageReply like ?  ";
 			pstmt = con
-					.prepareStatement("select * from message where MessageTitle like'%"
-							+ keyword + "%'");
+					.prepareStatement("select * from message where "
+							+ "MessageTitle like'%"+keyword + "%' or "
+							+ "Name like'%"+keyword + "%' or "
+							+ "MessageThem like'%"+keyword + "%' or "
+							+ "MessageContent like'%"+keyword + "%'");
 			rs = pstmt.executeQuery();
 			System.out.println(rs);
 			while (rs.next()) {
@@ -218,6 +262,7 @@ public class MessageDao {
 		return messageList;
 	}
 
+
 	public int getCount() {
 		int re = 0;
 		try {
@@ -237,6 +282,7 @@ public class MessageDao {
 		}
 		return re;
 	}
+
 
 	public List<MessageBean> getMessagesByPage(int pageNo, int num) {
 		List<MessageBean> messageList = new ArrayList<MessageBean>();
@@ -268,6 +314,7 @@ public class MessageDao {
 		}
 		return messageList;
 	}
+
 
 	public LoginBean checklogin(String adminName, String password) {
 
