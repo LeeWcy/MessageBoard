@@ -28,15 +28,19 @@ public class LoginServletUser extends HttpServlet{
 		LoginBean login = new LoginBean();
 		MessageDao logindao = new MessageDao();
 		login = logindao.checkuserlogin(adminName, password);
+		
+		if (login == null ) {
+			System.out.println("ÕË»§ÃÜÂë´íÎó");
+		}
 		if (login != null && authCode.equals(piccode)) {
 			List<MessageBean> list = new ArrayList<MessageBean>();
 			list = logindao.getMessages();
 			request.setAttribute("list", list);
 			session.setAttribute("login", login);
 			response.sendRedirect("MessageView");
-		} else {
-			request.getRequestDispatcher("index.jsp")
-					.forward(request, response);
+		}else {
+			System.out.println("ÑéÖ¤ÂëÊäÈë´íÎó");
+			request.getRequestDispatcher("UserLogin.jsp").forward(request, response);
 		}
 
 	}

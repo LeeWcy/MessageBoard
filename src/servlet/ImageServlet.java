@@ -32,7 +32,7 @@ public class ImageServlet extends HttpServlet {
 		// input number
 		for (int i = 0; i < 4; i++) {
 			g.setColor(Color.black);
-			g.setFont(new Font("华文隶书", Font.BOLD | Font.ITALIC, 22));
+			g.setFont(new Font("Arial Bold", Font.BOLD | Font.ITALIC, 22));
 			int n = rm.nextInt(10);
 			sbf.append(n);
 			g.drawString("" + n, i * 15 + 5, 18);

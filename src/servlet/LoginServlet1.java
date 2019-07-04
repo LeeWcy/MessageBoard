@@ -20,7 +20,7 @@ public class LoginServlet1 extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("gb2312"); 
-		response.setContentType("gb2312"); 
+		response.setContentType("text/html;charset=utf-8");
 		String adminName = request.getParameter("name");
 		String password = request.getParameter("password");
 		String authCode = request.getParameter("authcode");
@@ -29,15 +29,18 @@ public class LoginServlet1 extends HttpServlet {
 		LoginBean login = new LoginBean();
 		MessageDao logindao = new MessageDao();
 		login = logindao.checklogin(adminName, password);
+		if (login == null ) {
+			System.out.println("’Àªß√‹¬Î¥ÌŒÛ");
+		}
 		if (login != null && authCode.equals(piccode)) {
 			List<MessageBean> list = new ArrayList<MessageBean>();
 			list = logindao.getMessages();
 			request.setAttribute("list", list);
 			session.setAttribute("login", login);
 			response.sendRedirect("MessageView");
-		} else {
-			request.getRequestDispatcher("index.jsp")
-					.forward(request, response);
+		}else {
+			System.out.println("—È÷§¬Î ‰»Î¥ÌŒÛ");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 
 	}
