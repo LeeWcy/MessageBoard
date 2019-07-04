@@ -1,6 +1,5 @@
 package dao;
 
-//MessageDao鎺ュ彛绫荤殑瀹炵幇
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,7 +45,6 @@ public class MessageDao {
 		return messageList;
 	}
 
-	// 鎻掑叆鐣欒█
 	public int add(MessageBean messagebean) {
 		int re = 0;
 		try {
@@ -83,7 +81,7 @@ public class MessageDao {
 		return re;
 	}
 
-	// 鍒犻櫎鐣欒█
+
 	public int delete(int id) {
 		int re = 0;
 		try {
@@ -101,7 +99,7 @@ public class MessageDao {
 		return re;
 	}
 
-	// 淇敼鐣欒█
+
 	public int updata(MessageBean messagebean, int id) {
 		int re = 0;
 		try {
@@ -124,7 +122,7 @@ public class MessageDao {
 		return re;
 	}
 
-	// 鍥炲鐣欒█
+
 	public int reply(MessageBean messagebean, int id) {
 		int re = 0;
 		try {
@@ -169,7 +167,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb);// 灏嗙暀瑷�鍒楄〃鐨刡ean娣诲姞鍒伴泦鍚堢被涓�
+				messageList.add(mb);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -247,7 +245,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb); 
+				messageList.add(mb);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -259,7 +257,7 @@ public class MessageDao {
 		return messageList;
 	}
 
-	// 鍒嗛〉
+
 	public int getCount() {
 		int re = 0;
 		try {
@@ -280,7 +278,7 @@ public class MessageDao {
 		return re;
 	}
 
-	// 鍒嗛〉鏌ユ壘
+
 	public List<MessageBean> getMessagesByPage(int pageNo, int num) {
 		List<MessageBean> messageList = new ArrayList<MessageBean>();
 		try {
@@ -300,7 +298,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb);// 灏嗙暀瑷�鍒楄〃鐨刡ean娣诲姞鍒伴泦鍚堢被涓�
+				messageList.add(mb);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -312,7 +310,7 @@ public class MessageDao {
 		return messageList;
 	}
 
-	// 鐧诲綍楠岃瘉
+
 	public LoginBean checklogin(String adminName, String password) {
 
 		LoginBean login = new LoginBean();
@@ -321,22 +319,62 @@ public class MessageDao {
 			pstmt = con
 					.prepareStatement("select* from admin where adminName=? "
 							+ " and adminPassword=?");
-			pstmt.setString(1, adminName); // 璁剧疆SQL璇彞鍙傛暟
-			pstmt.setString(2, password); // 璁剧疆SQL璇彞鍙傛暟
-			ResultSet rs = pstmt.executeQuery(); // 执鎵ц鏌ヨ锛岃繑鍥炵粨鏋�
-			if (rs.next()) { // 通閫氳繃JavaBean淇濆瓨鏁版嵁值
+			pstmt.setString(1, adminName);
+			pstmt.setString(2, password); 
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
 
 				login.setAdminName(rs.getString(1));
 				login.setPassword(rs.getString(2));
-				// 杩斿洖JavaBean瀵硅薄
+				login.setAuth(0);
 				return login;
 			}
-			// 楠岃瘉澶辫触杩斿洖null
 		} catch (Exception e) {
 			e.printStackTrace();
 
 		}
 		return null;
+	}
+	
+	public LoginBean checkuserlogin(String account, String password) {
+
+		LoginBean login = new LoginBean();
+		try {
+			con = DBconn.getConn();
+			pstmt = con
+					.prepareStatement("select* from user where account=? "
+							+ " and password=?");
+			pstmt.setString(1, account); 
+			pstmt.setString(2, password);
+			ResultSet rs = pstmt.executeQuery(); 
+			if (rs.next()) { 
+
+				login.setAdminName(rs.getString(2));
+				login.setPassword(rs.getString(3));
+				login.setAuth(1);
+
+				return login;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+	
+	public boolean insertUser(String account, String name, String password) {
+		try {
+			con = DBconn.getConn();
+			pstmt = con.prepareStatement("insert into user(account,name,password) values(?,?,?)");
+			pstmt.setString(1, account);
+			pstmt.setString(2, name);
+			pstmt.setString(3, password);
+			pstmt.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

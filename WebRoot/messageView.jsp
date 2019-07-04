@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<%
 	int pageNo=Integer.parseInt( request.getAttribute("pageNo").toString());
 	int pageLa=Integer.parseInt(request.getAttribute("page").toString()); 
-	
+	LoginBean l = (LoginBean) session.getAttribute("login");
 	 %>
 <body>
     <!--nav-->
@@ -61,7 +61,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                </span>
                <span class="left yd">
                	<a href="OperationServlet?flag=<%="HF"%>&&id=<%= bean2.getID()%>">回复</a></span>
+               	<%if(l != null)
+               		if(l.getAuth() != 1){%>
                	<span class="left yd"><a href="OperationServlet?flag=<%="Delete"%>&&id=<%= bean2.getID()%>">删除</a>
+               	<%} %>
                	</span>
                 <div class="clear"></div>
                </p>
