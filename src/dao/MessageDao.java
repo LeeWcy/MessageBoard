@@ -1,6 +1,5 @@
 package dao;
 
-//MessageDao接口类的实现
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +33,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb);// 将留言列表的bean添加到集合类中
+				messageList.add(mb);// 灏嗙暀瑷�鍒楄〃鐨刡ean娣诲姞鍒伴泦鍚堢被涓�
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,7 +45,6 @@ public class MessageDao {
 		return messageList;
 	}
 
-	// 插入留言
 	public int add(MessageBean messagebean) {
 		int re = 0;
 		try {
@@ -83,7 +81,6 @@ public class MessageDao {
 		return re;
 	}
 
-	// 删除留言
 	public int delete(int id) {
 		int re = 0;
 		try {
@@ -101,7 +98,6 @@ public class MessageDao {
 		return re;
 	}
 
-	// 修改留言
 	public int updata(MessageBean messagebean, int id) {
 		int re = 0;
 		try {
@@ -124,7 +120,6 @@ public class MessageDao {
 		return re;
 	}
 
-	// 回复留言
 	public int reply(MessageBean messagebean, int id) {
 		int re = 0;
 		try {
@@ -169,7 +164,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb);// 将留言列表的bean添加到集合类中
+				messageList.add(mb);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -206,7 +201,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb); // 将查询到的结果放入集合中
+				messageList.add(mb);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -218,7 +213,6 @@ public class MessageDao {
 		return messageList;
 	}
 
-	// 分页
 	public int getCount() {
 		int re = 0;
 		try {
@@ -239,7 +233,6 @@ public class MessageDao {
 		return re;
 	}
 
-	// 分页查找
 	public List<MessageBean> getMessagesByPage(int pageNo, int num) {
 		List<MessageBean> messageList = new ArrayList<MessageBean>();
 		try {
@@ -259,7 +252,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb);// 将留言列表的bean添加到集合类中
+				messageList.add(mb);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -271,7 +264,6 @@ public class MessageDao {
 		return messageList;
 	}
 
-	// 登录验证
 	public LoginBean checklogin(String adminName, String password) {
 
 		LoginBean login = new LoginBean();
@@ -280,22 +272,62 @@ public class MessageDao {
 			pstmt = con
 					.prepareStatement("select* from admin where adminName=? "
 							+ " and adminPassword=?");
-			pstmt.setString(1, adminName); // 设置SQL语句参数
-			pstmt.setString(2, password); // 设置SQL语句参数
-			ResultSet rs = pstmt.executeQuery(); // ִ执行查询，返回结果
-			if (rs.next()) { // ͨ通过JavaBean保存数据ֵ
+			pstmt.setString(1, adminName);
+			pstmt.setString(2, password); 
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
 
 				login.setAdminName(rs.getString(1));
 				login.setPassword(rs.getString(2));
-				// 返回JavaBean对象
+				login.setAuth(0);
 				return login;
 			}
-			// 验证失败返回null
 		} catch (Exception e) {
 			e.printStackTrace();
 
 		}
 		return null;
+	}
+	
+	public LoginBean checkuserlogin(String account, String password) {
+
+		LoginBean login = new LoginBean();
+		try {
+			con = DBconn.getConn();
+			pstmt = con
+					.prepareStatement("select* from user where account=? "
+							+ " and password=?");
+			pstmt.setString(1, account); 
+			pstmt.setString(2, password);
+			ResultSet rs = pstmt.executeQuery(); 
+			if (rs.next()) { 
+
+				login.setAdminName(rs.getString(2));
+				login.setPassword(rs.getString(3));
+				login.setAuth(1);
+
+				return login;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+	
+	public boolean insertUser(String account, String name, String password) {
+		try {
+			con = DBconn.getConn();
+			pstmt = con.prepareStatement("insert into user(account,name,password) values(?,?,?)");
+			pstmt.setString(1, account);
+			pstmt.setString(2, name);
+			pstmt.setString(3, password);
+			pstmt.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
