@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import bean.LoginBean;
 import bean.MessageBean;
 import dao.MessageDao;
 
@@ -22,7 +22,9 @@ public class DoAddMessage extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
-		String name = request.getParameter("name");
+		LoginBean l=(LoginBean) request.getSession().getAttribute("login");
+		String name = l.getAdminName();
+		String account = l.getAccount();
 		String messageThem = request.getParameter("them");
 		String messageTitle = request.getParameter("title");
 		String messageContent = request.getParameter("content");
@@ -37,6 +39,7 @@ public class DoAddMessage extends HttpServlet {
 		messagebean.setMessgaeTitle(messageTitle);
 		messagebean.setMessageContent(messageContent);
 		messagebean.setDate1(Date);
+		messagebean.setAccount(account);
 		MessageDao messagedao = new MessageDao();
 		int n = messagedao.add(messagebean);
 		if (n > 0) {
@@ -46,10 +49,10 @@ public class DoAddMessage extends HttpServlet {
 				pageNo = _pageNo;
 			}
 			int pageNo1 = Integer.parseInt(pageNo);
-			int count = messagedao.getCount();// 获取总条数;
-			int num = 5;// 每页显示三条
+			int count = messagedao.getCount();
+			int num = 5;
 			int page = (int) Math.ceil(count * 1.0 / num);
-			request.setAttribute("page", page);// 将总条数传到jsp页面
+			request.setAttribute("page", page);
 			request.setAttribute("pageNo", pageNo);
 			request.setAttribute("message",
 					messagedao.getMessagesByPage(pageNo1, num));

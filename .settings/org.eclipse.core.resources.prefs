@@ -3,3 +3,4 @@ encoding//WebRoot/guestbook.jsp=UTF-8
 encoding//WebRoot/messageList.jsp=UTF-8
 encoding//src/dao/DBconn.java=UTF-8
 encoding//src/dao/MessageDao.java=UTF-8
+encoding//src/servlet/OperationServlet.java=UTF-8

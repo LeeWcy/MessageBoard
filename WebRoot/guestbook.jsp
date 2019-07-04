@@ -32,11 +32,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <%
 	String name="";
+	String account="";
 	LoginBean l = (LoginBean) session.getAttribute("login");
  		if (l == null){
  			response.sendRedirect("UserLogin.jsp");
- 		}else
+ 		}else{
  			name = l.getAdminName();
+ 			account = l.getAccount();
+ 		}
  	
  %>
 <body>
@@ -88,6 +91,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            	<form action="DoAddMessage" method="post">
            		<table>
            		<tr>
+           			<th>账号</th>
+           			<td> <input type="text" disabled="disabled" name="account"required value=<%=account%>></td>
+           		</tr>
+           		<tr>
            			<th>留言人</th>
            			<td> <input type="text" disabled="disabled" name="name"required value=<%=name%>></td>
            		</tr>
@@ -105,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </table>
                <div class="clear"></div>
                <th colspan="2"align="center"><input type="submit" value="添加留言" onclick="text()" /></th>
-  					</form>
+  			</form>
          	</div>
         </div>
          <!--end left -->
