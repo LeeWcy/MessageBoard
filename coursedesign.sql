@@ -1,58 +1,100 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : olive
-Source Server Version : 50624
-Source Host           : localhost:3306
-Source Database       : coursedesign
+ Source Server         : localhost_3306
+ Source Server Type    : MySQL
+ Source Server Version : 50621
+ Source Host           : localhost:3306
+ Source Schema         : coursedesign
 
-Target Server Type    : MYSQL
-Target Server Version : 50624
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50621
+ File Encoding         : 65001
 
-Date: 2018-04-06 20:01:15
+ Date: 04/07/2019 19:51:27
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for `admin`
+-- Table structure for admin
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
-CREATE TABLE `admin` (
+CREATE TABLE `admin`  (
   `id` int(4) NOT NULL AUTO_INCREMENT,
-  `adminName` varchar(10) NOT NULL,
-  `adminPassword` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `adminName` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `adminPassword` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `account` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', '123', '123');
+INSERT INTO `admin` VALUES (1, '123', '123', '123');
 
 -- ----------------------------
--- Table structure for `message`
+-- Table structure for message
 -- ----------------------------
 DROP TABLE IF EXISTS `message`;
-CREATE TABLE `message` (
+CREATE TABLE `message`  (
   `id` int(4) NOT NULL AUTO_INCREMENT,
-  `Name` char(20) CHARACTER SET utf8mb4 NOT NULL,
-  `MessageThem` char(50) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `MessageTitle` char(30) CHARACTER SET utf8mb4 NOT NULL,
-  `MessageContent` char(255) CHARACTER SET utf8mb4 NOT NULL,
-  `MessageReply` char(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `udate` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `replydate` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1245 DEFAULT CHARSET=latin1;
+  `Name` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MessageThem` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `MessageTitle` char(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MessageContent` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `udate` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `account` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1285 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES ('1239', '1231245', '12312354', 'QWEQWDFGVD', 'ASDASDSAXCZCZXCXZ', null, '2018-03-28 21:28:47', null);
-INSERT INTO `message` VALUES ('1240', '221', 'é»å°æ°å³', 'ASDAS', 'xcvbvcbfg', null, '2018-03-29 10:07:38', null);
-INSERT INTO `message` VALUES ('1241', '221', 'é»å°æ°å³', 'ASDAS', 'xcvbvcbfg', null, '2018-03-29 10:14:13', null);
-INSERT INTO `message` VALUES ('1242', '221', 'é»å°æ°å³', 'ASDAS', 'xcvbvcbfg', null, '2018-03-29 10:15:17', null);
-INSERT INTO `message` VALUES ('1243', '上的擦拭', '阿萨大苏打', '阿斯顿擦拭联系', '撒擦拭擦拭的', null, '2018-03-29 15:29:51', null);
-INSERT INTO `message` VALUES ('1244', '都是', '自行车', '中心城中心', '风的造型出现在', null, '2018-03-29 17:02:15', null);
+INSERT INTO `message` VALUES (1283, '1', 'sssss', 'ssssss', 'ssssssssss', '2019-07-04 16:44:05', '123');
+INSERT INTO `message` VALUES (1284, '1', 'qqqq', 'qqq', 'qqqqq', '2019-07-04 18:06:22', '123');
+
+-- ----------------------------
+-- Table structure for reply
+-- ----------------------------
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE `reply`  (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `Name` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ReplyContent` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Replydate` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MsgId` int(4) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `MSG_ID`(`MsgId`) USING BTREE,
+  CONSTRAINT `reply_ibfk_1` FOREIGN KEY (`MsgId`) REFERENCES `message` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of reply
+-- ----------------------------
+INSERT INTO `reply` VALUES (2, 'null', '11111', '2019-07-04 18:23:08', 1283);
+INSERT INTO `reply` VALUES (3, 'null', '11111', '2019-07-04 18:33:59', 1283);
+INSERT INTO `reply` VALUES (4, 'null', '11111', '2019-07-04 18:56:31', 1283);
+INSERT INTO `reply` VALUES (5, 'null', '11111', '2019-07-04 19:07:37', 1283);
+INSERT INTO `reply` VALUES (6, 'null', '11111', '2019-07-04 19:09:12', 1283);
+INSERT INTO `reply` VALUES (7, 'null', '11111', '2019-07-04 19:48:00', 1283);
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `account` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, 'aaa', '123', 'aaa');
+
+SET FOREIGN_KEY_CHECKS = 1;

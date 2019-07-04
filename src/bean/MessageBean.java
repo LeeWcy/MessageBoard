@@ -1,9 +1,14 @@
 package bean;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import dao.DBconn;
+
 public class MessageBean {
 	private int ID;
-	private String Name, MessageThem, MessgaeTitle, MessageContent,
-			MessageReply, date1, replyDate,account;
+	private String Name, MessageThem, MessgaeTitle, MessageContent, date1, account;
 
 	public String getDate1() {
 		return date1;
@@ -53,22 +58,6 @@ public class MessageBean {
 		MessageContent = messageContent;
 	}
 
-	public String getMessageReply() {
-		return MessageReply;
-	}
-
-	public void setMessageReply(String messageReply) {
-		MessageReply = messageReply;
-	}
-
-	public String getReplyDate() {
-		return replyDate;
-	}
-
-	public void setReplyDate(String replyDate) {
-		this.replyDate = replyDate;
-	}
-	
 	public String getAccount() {
 		return account;
 	}
@@ -76,5 +65,7 @@ public class MessageBean {
 	public void setAccount(String account) {
 		this.account = account;
 	}
+	
+	
 
 }

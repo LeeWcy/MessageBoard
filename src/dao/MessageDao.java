@@ -1,5 +1,6 @@
 package dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,9 +31,7 @@ public class MessageDao {
 				mb.setMessageThem(rs.getString("MessageThem"));
 				mb.setMessgaeTitle(rs.getString("MessageTitle"));
 				mb.setMessageContent(rs.getString("MessageContent"));
-				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
-				mb.setReplyDate(rs.getString("replydate"));
 				messageList.add(mb);
 			}
 		} catch (SQLException e) {
@@ -44,6 +43,7 @@ public class MessageDao {
 		}
 		return messageList;
 	}
+
 
 	public int add(MessageBean messagebean) {
 		int re = 0;
@@ -85,6 +85,7 @@ public class MessageDao {
 		return re;
 	}
 
+
 	public int delete(int id) {
 		int re = 0;
 		try {
@@ -102,45 +103,17 @@ public class MessageDao {
 		return re;
 	}
 
+
 	public int updata(MessageBean messagebean, int id) {
 		int re = 0;
 		try {
 			con = DBconn.getConn();
 			sql = "update message set MessageThem='"
 					+ messagebean.getMessageThem() + "',MessageContent='"
-					+ messagebean.getMessageContent() + "',MessageReply='"
-					+ messagebean.getMessageReply() + "',udate='"
-					+ messagebean.getDate1() + "',replydate='"
-					+ messagebean.getReplyDate() + "',MessageTitle='"
+					+ messagebean.getMessageContent() + "',udate='"
+					+ messagebean.getDate1() + "',MessageTitle='"
 					+ messagebean.getMessgaeTitle()+"' where id='" + id + "'";
 			pstmt = con.prepareStatement(sql);
-			re = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBconn.closeResultSet(rs);
-			DBconn.closeStatement(pstmt);
-			DBconn.CloseConn();
-		}
-		return re;
-	}
-
-	public int reply(MessageBean messagebean, int id) {
-		int re = 0;
-		try {
-			con = DBconn.getConn();
-			System.out.println(id);
-			sql = "update message set MessageReply='"
-					+ messagebean.getMessageReply() + "',replydate='"
-					+ messagebean.getReplyDate() + "' where id='" + id + "'";
-			//sql = "updata message set MessageReply='"+MessageReply+"',replydate='"+replydate+"' where id='"+id+"'";
-			/*sql = "updata message set MessageReply=?,replydate=? where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,MessageReply);
-			pstmt.setString(2,replydate);
-			pstmt.setInt(3, id);
-			//pstmt.setInt(3,id);
-*/			pstmt=con.prepareStatement(sql);
 			re = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,7 +129,7 @@ public class MessageDao {
 		List<MessageBean> messageList = new ArrayList<MessageBean>();
 		try {
 			con = DBconn.getConn();
-			sql = "select * from message where id='" + MD + "' ORDER BY id";
+			sql = "select * from message where id='" + MD + "'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -166,14 +139,15 @@ public class MessageDao {
 				mb.setMessageThem(rs.getString("MessageThem"));
 				mb.setMessgaeTitle(rs.getString("MessageTitle"));
 				mb.setMessageContent(rs.getString("MessageContent"));
-				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
-				mb.setReplyDate(rs.getString("replydate"));
 				messageList.add(mb);
 			}
-		} catch (SQLException e) {
+
+		} 
+		catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		} 
+		finally {
 			DBconn.closeResultSet(rs);
 			DBconn.closeStatement(pstmt);
 			DBconn.CloseConn();
@@ -203,9 +177,7 @@ public class MessageDao {
 				mb.setMessageThem(rs.getString("MessageThem"));
 				mb.setMessgaeTitle(rs.getString("MessageTitle"));
 				mb.setMessageContent(rs.getString("MessageContent"));
-				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
-				mb.setReplyDate(rs.getString("replydate"));
 				messageList.add(mb);
 			}
 		} catch (SQLException e) {
@@ -217,6 +189,7 @@ public class MessageDao {
 		}
 		return messageList;
 	}
+
 
 	public int getCount() {
 		int re = 0;
@@ -238,6 +211,7 @@ public class MessageDao {
 		return re;
 	}
 
+
 	public List<MessageBean> getMessagesByPage(int pageNo, int num) {
 		List<MessageBean> messageList = new ArrayList<MessageBean>();
 		try {
@@ -254,9 +228,7 @@ public class MessageDao {
 				mb.setMessageThem(rs.getString("MessageThem"));
 				mb.setMessgaeTitle(rs.getString("MessageTitle"));
 				mb.setMessageContent(rs.getString("MessageContent"));
-				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
-				mb.setReplyDate(rs.getString("replydate"));
 				messageList.add(mb);
 			}
 		} catch (SQLException e) {
@@ -268,6 +240,7 @@ public class MessageDao {
 		}
 		return messageList;
 	}
+
 
 	public LoginBean checklogin(String adminName, String password) {
 
@@ -281,7 +254,6 @@ public class MessageDao {
 			pstmt.setString(2, password); 
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-
 				login.setAdminName(rs.getString(1));
 				login.setPassword(rs.getString(2));
 				login.setAccount(rs.getString(4));

@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
 import bean.MessageBean;
+import bean.ReplyBean;
 import dao.MessageDao;
+import dao.ReplyDao;
 
 public class OperationServlet extends HttpServlet {
 	public void right(){
@@ -27,9 +29,11 @@ public class OperationServlet extends HttpServlet {
 
 		response.setContentType("text/html");
 		MessageBean messagebean = new MessageBean();
+		ReplyBean replybean = new ReplyBean();
 		int id = new Integer(request.getParameter("id"));
 		String flag = request.getParameter("flag");
 		MessageDao dao = new MessageDao();
+		ReplyDao dao1 = new ReplyDao();
 		String pageNo = "1";
 		String _pageNo = request.getParameter("pageNo");
 		System.out.println(_pageNo);
@@ -43,8 +47,8 @@ public class OperationServlet extends HttpServlet {
 		request.setAttribute("page", page);
 		request.setAttribute("pageNo", pageNo);
 		if (flag.equals("Delete")) {
-			int n = dao.delete(id);
-			response.sendRedirect("MessageView");
+//			int n = dao.delete(id);
+//			response.sendRedirect("MessageView");
 //			if (n > 0) {
 //				right();
 //				request.setAttribute("message",
@@ -60,20 +64,15 @@ public class OperationServlet extends HttpServlet {
 			String messageThem = request.getParameter("them");
 			String messageTitle = request.getParameter("title");
 			String messageContent = request.getParameter("content");
-			String messageReplyContent = request.getParameter("replyContent");
 			Date date = new Date();
 			SimpleDateFormat sdformat = new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss");
 			String Date = sdformat.format(date);
 
-			messagebean.setMessageReply(messageReplyContent);
 			messagebean.setMessageThem(messageThem);
 			messagebean.setMessgaeTitle(messageTitle);
 			messagebean.setMessageContent(messageContent);
 			messagebean.setDate1(Date);
-			if (messageReplyContent != null) {
-				messagebean.setReplyDate(Date);
-			}
 			int n = dao.updata(messagebean, id);
 			if (n > 0) {
 				request.setAttribute("message",
@@ -83,18 +82,20 @@ public class OperationServlet extends HttpServlet {
 			}
 		}
 		else if (flag.equals("reply")) {
-			String messageReplyContent = request.getParameter("replyContent");
+			String replyContent = request.getParameter("replyContent");
 			Date date = new Date();
 			SimpleDateFormat sdformat = new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss");
 			String replyDate = sdformat.format(date);
 			System.out.println(id);
-			messagebean.setMessageReply(messageReplyContent);
-			messagebean.setReplyDate(replyDate);
-			int n = dao.reply(messagebean, id);
+			replybean.setReplyContent(replyContent);
+			replybean.setReplyDate1(replyDate);
+			int n = dao1.reply(replybean, id);
 			if (n > 0) {
 				List<MessageBean> list = dao.detailMessages(id);
+				List<ReplyBean> list1 = dao1.getMessageReply(id);
 				request.setAttribute("message", list);
+				request.setAttribute("reply", list1);
 				request.getRequestDispatcher("details.jsp").forward(request,
 						response);
 			}
