@@ -88,14 +88,15 @@ function reloadImage(t){
            		</tr>
               <tr>
               	<th>密码：</th>
-              	<td><input type="text" name="password"></td>
+              	<td><input type="password" name="password"></td>
             	</tr>
             	<tr>
            		<td> <img src="./ImageServlet" align="middle" alt="看不清 ，点击这里" onclick="reloadImage(this)"></td>
-              	<td><input type="text" name="authcode"required placeholder="验证码"/></td>
+              	<td><input type="text" name="authcode" required placeholder="验证码"/></td>
             	</tr>
                <div class="clear"></div>
-               <th colspan="2"align="center"><input type="submit" value="登录" onclick="text()" /></th>
+               <th colspan="2"align="center">
+               <input type="submit" value="登录" /></th>
           </form>
           </table></center>
           </div>
