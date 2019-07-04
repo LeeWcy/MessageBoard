@@ -14,8 +14,8 @@ public class LogoutServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		session.invalidate(); // 清空Session中的信息
-		response.sendRedirect("index.jsp"); // 跳转回登录页面
+		session.invalidate(); 
+		response.sendRedirect("index.jsp"); 
 
 	}
 

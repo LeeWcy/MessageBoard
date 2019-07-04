@@ -66,7 +66,7 @@ function reloadImage(t){
            		</tr>
               <tr>
               	<th>密码：</th>
-              	<td><input type="text" name="password"></td>
+              	<td><input type="password" name="password"></td>
             	</tr>
             	<tr>
            		<td> <img src="./ImageServlet" align="middle" alt="看不清 ，点击这里" onclick="reloadImage(this)"></td>
