@@ -43,15 +43,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              
                <dd>
                  <p class="dd_text_1"><%=bean2.getMessageContent() %>></p>
-               <p class="dd_text_1">回复：<%=bean2.getMessageReply() %></br>回复时间:  <%=bean2.getReplyDate() %></p>
                <p class="dd_text_2">
                <span class="left author"><%=bean2.getName() %></span>
                <span class="left fl">主题：<%=bean2.getMessageThem() %></span><br/><hr/> <%} %> <span class="left yd"><a href="MessageView" title="返回">返回</a>
                </span>
                 <div class="clear"></div>
-               </p>
                </dd>
-               <div class="clear"></div>
              </dl>
             </div>
            <!--wz end-->
@@ -59,6 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            </div>
          </div>
          <!--left end-->
+       </div>  
     <!--footer start-->
     <!--footer end-->
     <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>

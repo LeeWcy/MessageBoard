@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            </div>
          </div>
          <!--left end-->
-         
+       </div>  
     <!--footer start-->
     <div id="footer">
      <p></p>

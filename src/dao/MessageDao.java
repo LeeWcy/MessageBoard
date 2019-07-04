@@ -177,9 +177,7 @@ public class MessageDao {
 				mb.setMessageThem(rs.getString("MessageThem"));
 				mb.setMessgaeTitle(rs.getString("MessageTitle"));
 				mb.setMessageContent(rs.getString("MessageContent"));
-				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
-				mb.setReplyDate(rs.getString("replydate"));
 				messageList.add(mb); 
 			}
 		} catch (SQLException e) {

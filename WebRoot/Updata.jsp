@@ -71,8 +71,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<tr>
               	<th>留言内容：</th>
               	<td><textarea name="content" placeholder="<%=bean2.getMessageContent() %>"></textarea></td>
-              	<th>回复内容：</th>
-              	<td><textarea name="replyContent" placeholder="<%=bean2.getMessageReply() %>"></textarea></td>
               </table>
                <div class="clear"></div>
                <th colspan="2"align="center"><input type="submit" value="修改留言" onclick="text()" /></th>
@@ -81,6 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <%} %> <!--end left -->
          <div class="clear"></div>
+    </div>
     </div>
     <!--content end-->
     <!--footer-->

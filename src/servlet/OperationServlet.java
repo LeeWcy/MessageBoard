@@ -47,8 +47,8 @@ public class OperationServlet extends HttpServlet {
 		request.setAttribute("page", page);
 		request.setAttribute("pageNo", pageNo);
 		if (flag.equals("Delete")) {
-//			int n = dao.delete(id);
-//			response.sendRedirect("MessageView");
+		int n = dao.delete(id);
+		response.sendRedirect("MessageView");
 //			if (n > 0) {
 //				right();
 //				request.setAttribute("message",
@@ -112,7 +112,9 @@ public class OperationServlet extends HttpServlet {
 					response);
 		} else if (flag.equals("XQ")) {
 			List<MessageBean> list = dao.detailMessages(id);
+			List<ReplyBean> list1 = dao1.getMessageReply(id);
 			request.setAttribute("message", list);
+			request.setAttribute("reply", list1);
 			request.getRequestDispatcher("details.jsp").forward(request,
 					response);
 		}

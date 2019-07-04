@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%
 	LoginBean l = (LoginBean) session.getAttribute("login");
  		if (l == null){
- 			response.sendRedirect("index.jsp");
+ 			//response.sendRedirect("index.jsp");
  		}else{
  			if(l.getAuth()==0){
  				response.sendRedirect("MessageView");
