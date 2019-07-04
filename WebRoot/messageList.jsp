@@ -34,9 +34,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <li><a href="guestbook.jsp">发表留言</a></li>
          <li><a href="lianjie.jsp">友情链接</a></li>
           <li><a href="login.jsp">管理员登录</a></li>
-   	<form action="MessageList" method="post">
-   		<input type="text" name="search" id="search"/>
-   		<input type="submit" value="搜索" />
+   		<form action="MessageList" method="post">
+	   		<input type="text" name="search" id="search"/>
+	   		<input type="submit" value="搜索" />
+   		</form> 
+   		<form action="OrderByTimeServlet" method="post">
+	   		<input type="submit" name="1" value="按时间升序" />
+	   		<input type="submit" name="2" value="按时间降序" />
    		</form> 
          <div class="clear"></div>
         </ul>
@@ -62,12 +66,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="content_text">
            <!--wz-->
            <div class="wz">
-            <h3><span>&nbsp;&nbsp;</span><a href="DetailsMessage?id=<%=bean2.getID() %>" ><%=bean2.getMessgaeTitle() %></a></h3>
+            <h3><span>&nbsp;&nbsp;</span><a href="DetailsMessage?id=<%=bean2.getID() %>" >标题：<%=bean2.getMessgaeTitle() %></a></h3>
              <dl>  
                <dd>
                 
                <p class="dd_text_2">
-               <span class="left author"><%=bean2.getName() %></span><span class="left sj"><%=bean2.getDate1() %></span>
+               <span class="left author">用户：<%=bean2.getName() %></span><span class="left sj">时间：<%=bean2.getDate1() %></span>
                <span class="left yd"><a href="DetailsMessage?id=<%=bean2.getID() %>" title="阅读全文">详情>></a>
                </span>
                 <div class="clear"></div>
@@ -79,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <!--wz end-->
             <!--wz-->
             <%
-            }    
+            }
             %>
              </div>
          <!--left end-->

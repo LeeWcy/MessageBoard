@@ -22,11 +22,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	 %>
 <body>
-    <!--header start-->
-    <div id="header">
-      <h1>主人寄语</h1>
-      <p>青春是打开了,就合不上的书。人生是踏上了，就回不了头的路，爱情是扔出了，就收不回的赌注。</p> <!---->   
-     <!--header end-->
     <!--nav-->
     <div id="nav">
         <ul>

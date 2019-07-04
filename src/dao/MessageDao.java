@@ -1,6 +1,6 @@
 package dao;
 
-//MessageDao接口类的实现
+//MessageDao鎺ュ彛绫荤殑瀹炵幇
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +34,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb);// 将留言列表的bean添加到集合类中
+				messageList.add(mb);// 灏嗙暀瑷�鍒楄〃鐨刡ean娣诲姞鍒伴泦鍚堢被涓�
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,7 +46,7 @@ public class MessageDao {
 		return messageList;
 	}
 
-	// 插入留言
+	// 鎻掑叆鐣欒█
 	public int add(MessageBean messagebean) {
 		int re = 0;
 		try {
@@ -83,7 +83,7 @@ public class MessageDao {
 		return re;
 	}
 
-	// 删除留言
+	// 鍒犻櫎鐣欒█
 	public int delete(int id) {
 		int re = 0;
 		try {
@@ -101,7 +101,7 @@ public class MessageDao {
 		return re;
 	}
 
-	// 修改留言
+	// 淇敼鐣欒█
 	public int updata(MessageBean messagebean, int id) {
 		int re = 0;
 		try {
@@ -124,7 +124,7 @@ public class MessageDao {
 		return re;
 	}
 
-	// 回复留言
+	// 鍥炲鐣欒█
 	public int reply(MessageBean messagebean, int id) {
 		int re = 0;
 		try {
@@ -169,7 +169,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb);// 将留言列表的bean添加到集合类中
+				messageList.add(mb);// 灏嗙暀瑷�鍒楄〃鐨刡ean娣诲姞鍒伴泦鍚堢被涓�
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -181,19 +181,19 @@ public class MessageDao {
 		return messageList;
 	}
 
-	public List<MessageBean> FindByString(String keyword) {
+	public List<MessageBean> OrderByTime(String method) {
 		// TODO Auto-generated method stub
 		List<MessageBean> messageList = new ArrayList<MessageBean>();
 		try {
 			con = DBconn.getConn();
-			// sql = "select * from message where MessageTitle like %'" +
-			// keyword
-			// + "'% ";
-			// +
-			// "or Name like ? or MessageThem like ? or MessageContent like ? or MessageReply like ?  ";
-			pstmt = con
-					.prepareStatement("select * from message where MessageTitle like'%"
-							+ keyword + "%'");
+			//按留言时间查询
+			if(method == "asc") {
+				//升序
+				pstmt = con.prepareStatement("select * from message ORDER BY udate asc");
+			}else if (method == "desc") {
+				//降序
+				pstmt = con.prepareStatement("select * from message ORDER BY udate desc");
+			}
 			rs = pstmt.executeQuery();
 			System.out.println(rs);
 			while (rs.next()) {
@@ -206,7 +206,48 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb); // 将查询到的结果放入集合中
+				messageList.add(mb); 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBconn.closeResultSet(rs);
+			DBconn.closeStatement(pstmt);
+			DBconn.CloseConn();
+		}
+		return messageList;
+	}
+	
+	
+	public List<MessageBean> FindByString(String keyword) {
+		// TODO Auto-generated method stub
+		List<MessageBean> messageList = new ArrayList<MessageBean>();
+		try {
+			con = DBconn.getConn();
+			// sql = "select * from message where MessageTitle like %'" +
+			// keyword
+			// + "'% ";
+			// +
+			// "or Name like ? or MessageThem like ? or MessageContent like ? or MessageReply like ?  ";
+			pstmt = con
+					.prepareStatement("select * from message where "
+							+ "MessageTitle like'%"+keyword + "%' or "
+							+ "Name like'%"+keyword + "%' or "
+							+ "MessageThem like'%"+keyword + "%' or "
+							+ "MessageContent like'%"+keyword + "%'");
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+			while (rs.next()) {
+				MessageBean mb = new MessageBean();
+				mb.setID(rs.getInt("id"));
+				mb.setName(rs.getString("Name"));
+				mb.setMessageThem(rs.getString("MessageThem"));
+				mb.setMessgaeTitle(rs.getString("MessageTitle"));
+				mb.setMessageContent(rs.getString("MessageContent"));
+				mb.setMessageReply(rs.getString("MessageReply"));
+				mb.setDate1(rs.getString("udate"));
+				mb.setReplyDate(rs.getString("replydate"));
+				messageList.add(mb); 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -218,7 +259,7 @@ public class MessageDao {
 		return messageList;
 	}
 
-	// 分页
+	// 鍒嗛〉
 	public int getCount() {
 		int re = 0;
 		try {
@@ -239,7 +280,7 @@ public class MessageDao {
 		return re;
 	}
 
-	// 分页查找
+	// 鍒嗛〉鏌ユ壘
 	public List<MessageBean> getMessagesByPage(int pageNo, int num) {
 		List<MessageBean> messageList = new ArrayList<MessageBean>();
 		try {
@@ -259,7 +300,7 @@ public class MessageDao {
 				mb.setMessageReply(rs.getString("MessageReply"));
 				mb.setDate1(rs.getString("udate"));
 				mb.setReplyDate(rs.getString("replydate"));
-				messageList.add(mb);// 将留言列表的bean添加到集合类中
+				messageList.add(mb);// 灏嗙暀瑷�鍒楄〃鐨刡ean娣诲姞鍒伴泦鍚堢被涓�
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -271,7 +312,7 @@ public class MessageDao {
 		return messageList;
 	}
 
-	// 登录验证
+	// 鐧诲綍楠岃瘉
 	public LoginBean checklogin(String adminName, String password) {
 
 		LoginBean login = new LoginBean();
@@ -280,17 +321,17 @@ public class MessageDao {
 			pstmt = con
 					.prepareStatement("select* from admin where adminName=? "
 							+ " and adminPassword=?");
-			pstmt.setString(1, adminName); // 设置SQL语句参数
-			pstmt.setString(2, password); // 设置SQL语句参数
-			ResultSet rs = pstmt.executeQuery(); // ִ执行查询，返回结果
-			if (rs.next()) { // ͨ通过JavaBean保存数据ֵ
+			pstmt.setString(1, adminName); // 璁剧疆SQL璇彞鍙傛暟
+			pstmt.setString(2, password); // 璁剧疆SQL璇彞鍙傛暟
+			ResultSet rs = pstmt.executeQuery(); // 执鎵ц鏌ヨ锛岃繑鍥炵粨鏋�
+			if (rs.next()) { // 通閫氳繃JavaBean淇濆瓨鏁版嵁值
 
 				login.setAdminName(rs.getString(1));
 				login.setPassword(rs.getString(2));
-				// 返回JavaBean对象
+				// 杩斿洖JavaBean瀵硅薄
 				return login;
 			}
-			// 验证失败返回null
+			// 楠岃瘉澶辫触杩斿洖null
 		} catch (Exception e) {
 			e.printStackTrace();
 
