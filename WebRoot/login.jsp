@@ -30,7 +30,7 @@ function reloadImage(t){
       <!--header start-->
     <div id="header">
       <h1>登录界面</h1>
-      <p>青春是打开了,就合不上的书。人生是踏上了，就回不了头的路，爱情是扔出了，就收不回的赌注。</p>    
+     
     </div>
      <!--header end-->
     <!--nav-->
@@ -54,7 +54,6 @@ function reloadImage(t){
          <li><a href="index.jsp">首页</a></li>
 		<li><a href="<%-- <%=flag %> --%>MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
-         <li><a href="lianjie.jsp">友情链接</a></li>
          <% if(tag == -1){ %>
          <li><a href="UserLogin.jsp">用户登录</a></li>
          <%} %>

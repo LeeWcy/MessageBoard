@@ -181,7 +181,45 @@ public class MessageDao {
 		}
 		return messageList;
 	}
-
+	
+	
+	public List<MessageBean> OrderByReply() {
+		// TODO Auto-generated method stub
+		List<MessageBean> messageList = new ArrayList<MessageBean>();
+		try {
+			con = DBconn.getConn();
+			//按回复数查询
+			pstmt = con.prepareStatement("select message.id,message.Name,MessageThem,MessageTitle,MessageContent,udate,account,count(1) from message\r\n" + 
+					"left join reply on message.id=reply.MsgId\r\n" + 
+					"group by message.id\r\n" + 
+					"order by count(1) desc;");
+			
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+			while (rs.next()) {
+				MessageBean mb = new MessageBean();
+				mb.setID(rs.getInt("id"));
+				mb.setName(rs.getString("Name"));
+				mb.setMessageThem(rs.getString("MessageThem"));
+				mb.setMessgaeTitle(rs.getString("MessageTitle"));
+				mb.setMessageContent(rs.getString("MessageContent"));
+				mb.setDate1(rs.getString("udate"));
+				mb.setAccount(rs.getString("account"));
+				mb.setReplyNum(rs.getString("count(1)"));
+				System.out.println("回复数:"+rs.getString("count(1)"));
+				messageList.add(mb); 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBconn.closeResultSet(rs);
+			DBconn.closeStatement(pstmt);
+			DBconn.CloseConn();
+		}
+		return messageList;
+	}
+	
+	
 	public List<MessageBean> OrderByTime(String method) {
 		// TODO Auto-generated method stub
 		List<MessageBean> messageList = new ArrayList<MessageBean>();

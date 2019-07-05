@@ -76,6 +76,16 @@
     <servlet-name>FindMessage</servlet-name>
     <servlet-class>servlet.FindMessage</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>OrderByReply</servlet-name>
+    <servlet-class>servlet.OrderByReply</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderByReply</servlet-name>
+    <url-pattern>/OrderByReply</url-pattern>
+  </servlet-mapping>
    <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -153,7 +163,7 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>

@@ -19,34 +19,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <% int pageNo=Integer.parseInt( request.getAttribute("pageNo").toString());
 	int pageLa=Integer.parseInt(request.getAttribute("page").toString()); %>
 <%
-	LoginBean l = (LoginBean) session.getAttribute("login");
- 		if (l == null){
- 			//response.sendRedirect("index.jsp");
- 		}else{
- 			if(l.getAuth()==0){
- 				response.sendRedirect("MessageView");
- 			}
- 		}
-%>
+    		
+
+    		LoginBean l = (LoginBean) session.getAttribute("login");
+    		int tag=-1;
+    		if (l == null){
+    		}else{
+    			tag = l.getAuth();
+    		}
+    		
+    	%>
 <body>
     <!--header start-->
     <div id="header">
-      <h1>主人寄语</h1>
-      <p>青春是打开了,就合不上的书。人生是踏上了，就回不了头的路，爱情是扔出了，就收不回的赌注。</p> <!---->   
+      <h1>留言列表</h1>
+      </div>
     
      <!--header end-->
     <!--nav-->
-    <div id="nav">
-        <ul>
-        
+    <div id="nav" align="center">
          <ul>
-        
          <li><a  href="index.jsp">首页</a></li>
 		 <li><a href="MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
-         <li><a href="PersonalCenter">个人中心</a></li>
-          <li><a href="LogoutServlet">退出登录</a></li>
-   		<form action="MessageList" method="post">
+         <% if(tag == -1){ %>
+         <li><a href="UserLogin.jsp">用户登录</a></li>
+         <%} %>
+         <% if(tag == 1){%>
+         <li><a href="LogoutServlet">退出登录</a></li>
+         <%} %>
+         <% if(tag == 0){%>
+         <li><a href="LogoutServlet">退出登录</a></li>
+         <%} %>
+         <%if(tag == -1){ %>
+         <li><a href="login.jsp">管理员登录</a></li>
+         <%} %>
+         <div class="clear"></div>
+    </div>
+    
+    <div class="order-and-search" align="center">
+    	<form action="MessageList" method="post">
 	   		<input type="text" name="search" id="search"/>
 	   		<input type="submit" value="搜索" />
    		</form> 
@@ -54,17 +66,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   		<input type="submit" name="1" value="按时间升序" />
 	   		<input type="submit" name="2" value="按时间降序" />
    		</form> 
-         <div class="clear"></div>
-        </ul>
-      </div>
+   		<form action="OrderByReply" method="post">
+	   		<input type="submit" name="ByReply" value="按回复数排序" />
+   		</form> 
+         
+    </div>
       
-      </div>
+      
        <!--nav end-->
        
     <!--content start-->
     <div id="content">
          <!--left-->
          <div class="left" id="c_left">
+          <div class="weizi">
+           <div class="wz_text">当前位置：<a href="index.jsp">首页</a>><h1>留言列表</h1></div>
+      </div>
            <div class="s_tuijian">
            <h2>留言<span>列表</span></h2>
            </div>
@@ -83,8 +100,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <dd>
                 
                <p class="dd_text_2">
-               <span class="left author">用户：<%=bean2.getName() %></span><span class="left sj">时间：<%=bean2.getDate1() %></span>
-               <span class="left yd"><a href="DetailsMessage?id=<%=bean2.getID() %>" title="阅读全文">详情>></a>
+               <span class="left author">用户：<%=bean2.getName() %></span>
+               <span class="left sj">时间：<%=bean2.getDate1() %></span>
+               <span class="left yd"><a href="DetailsMessage?id=<%=bean2.getID() %>">详情>></a>
                </span>
                 <div class="clear"></div>
                </dd>
@@ -97,6 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            </div>
           </div>
          <!--left end-->
+<<<<<<< HEAD
          <br><br>
             <a href="MessageView?pageNo=<%=pageNo>1?(pageNo-1):1 %>">首页</a> 
             <a href="MessageView?pageNo=<%=pageNo-1 %>">上一页</a>
@@ -104,6 +123,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a href="MessageView?pageNo=<%=pageLa %>">尾页</a>
        </div>
        </div>   
+=======
+         <div align="center">
+         	<tr>
+	       		<td colspan="7" rowspan="2">
+		            <a href="MessageView?pageNo=<%=pageNo>1?(pageNo-1):1 %>">首页&nbsp;&nbsp;</a> 
+		            <a href="MessageView?pageNo=<%=pageNo-1 %>">上一页&nbsp;&nbsp;</a>
+		            <a href="MessageView?pageNo=<%=pageNo<pageLa?(pageNo+1):pageLa %>">下一页&nbsp;&nbsp;</a>      
+		            <a href="MessageView?pageNo=<%=pageLa %>">尾页</a>
+		        </td>
+            </tr>
+         </div>
+>>>>>>> c3d3a27494774aaab594b1727b13b3c27592dee5
     <!--footer end-->
     <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
     <script  type="text/javascript" src="js/nav.js"></script>

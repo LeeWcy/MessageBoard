@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -20,8 +20,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
     <!--header start-->
     <div id="header">
-      <h1>详情页面</h1>
-      <p>青春是打开了,就合不上的书。人生是踏上了，就回不了头的路，爱情是扔出了，就收不回的赌注。</p>    
+      <h1>回复页面</h1>
+      
     </div>
      <!--header end-->
     <!--content start-->
@@ -34,7 +34,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <% List<MessageBean> bean=(List<MessageBean>)request.getAttribute("message");
 			if(bean==null){
 			%>
-			<p>wu cha xun jie guo </p>
 			<%
 			}
 			else{ for(MessageBean bean2 : bean)
@@ -43,17 +42,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="content_text">
            <!--wz-->
            <div class="wz">
-            <h3><%=bean2.getMessgaeTitle() %></h3>
+            <h3>标题：<%=bean2.getMessgaeTitle() %></h3>
              <dl>
              
                <dd>
-                 <p class="dd_text_1"><%=bean2.getMessageContent() %>></p>
-                <form action="OperationServlet?flag=<%="reply" %>&id=<%=bean2.getID()%>" method="post"><p class="dd_text_1"><textarea name="replyContent"></textarea>
+                 <p class="dd_text_1">内容：<%=bean2.getMessageContent() %>></p>
+                <form action="OperationServlet?flag=<%="reply" %>&id=<%=bean2.getID() %>" method="post"><p class="dd_text_1"><textarea name="replyContent"></textarea>
                	
                </p>
                <p class="dd_text_2">
-               <span class="left author"><%=bean2.getName() %></span><span class="left sj"><%=bean2.getDate1() %></span>
-               <span class="left fl">主题：<%=bean2.getMessageThem() %></span><span class="left yd"><a><input type="submit" value="回复" /></a>
+               <span class="left author">用户：<%=bean2.getName() %></span>
+               <span class="left sj">时间：<%=bean2.getDate1() %></span>
+               <span class="left fl">主题：<%=bean2.getMessageThem() %></span>
+               <span class="left "><a><input type="submit" value="回复" /></a>
                </span></form>
                 <div class="clear"></div>
                </dd>

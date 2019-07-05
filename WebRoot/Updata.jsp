@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <meta charset="UTF-8">
@@ -31,16 +31,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
       <!--header start-->
     <div id="header">
-      <h1>发表留言</h1>
-      <p>青春是打开了,就合不上的书。人生是踏上了，就回不了头的路，爱情是扔出了，就收不回的赌注。</p>    
+      <h1>修改留言</h1>
     </div>
      <!--header end-->
-       <!--nav end-->
+       
+       
     <!--content start-->
     <div id="content">
        <!--left-->
          <div class="left">
-           <div class="weizi">
+           
            <div class="s_tuijian">
            <h2>修改<span>留言</span></h2>
            </div>
@@ -62,20 +62,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            		</tr>
               <tr>
               	<th>留言主题：</th>
-              	<td><input type="text" name="them" placeholder="<%=bean2.getMessageThem()%>"></td>
+              	<td><input type="text" name="them" value="<%=bean2.getMessageThem()%>"></td>
             	</tr>
             	<tr>
               	<th>留言题目：</th>
-              	<td><input type="text" name="title"required placeholder="<%=bean2.getMessgaeTitle()%>"/></td>
+              	<td><input type="text" name="title"required value="<%=bean2.getMessgaeTitle()%>"/></td>
             	</tr>
             	<tr>
               	<th>留言内容：</th>
-              	<td><textarea name="content" placeholder="<%=bean2.getMessageContent() %>"></textarea></td>
+              	<td><textarea id="summary"name="content" required "><%= bean2.getMessageContent()  %></textarea></td>
               </table>
                <div class="clear"></div>
                <th colspan="2"align="center"><input type="submit" value="修改留言" onclick="text()" /></th>
   					</form>
-         	</div>
+   
         </div>
         <%} %> <!--end left -->
          <div class="clear"></div>

@@ -9,6 +9,7 @@ import dao.DBconn;
 public class MessageBean {
 	private int ID;
 	private String Name, MessageThem, MessgaeTitle, MessageContent, date1, account;
+	private String replyNum;
 
 	public String getDate1() {
 		return date1;
@@ -66,6 +67,13 @@ public class MessageBean {
 		this.account = account;
 	}
 	
+	public String getReplyNum() {
+		return replyNum;
+	}
+
+	public void setReplyNum(String replyNum) {
+		this.replyNum = replyNum;
+	}
 	
 
 }
