@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <meta charset="UTF-8">
@@ -12,10 +12,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link rel="stylesheet" href="css/index.css"/>
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/style.css"/><link rel="stylesheet" href="css/style2.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
 <script type="text/javascript" src="js/jquery1.42.min.js"></script>
 <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
-<script>
+<script type="text/javascript">
 	function text(){
 		var a=document.getElementsByTagName("textarea").value;
 		if(a.length<10){
@@ -26,9 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 	}
 </script>
-<!--[if lt IE 9]>
-<script src="js/html5.js"></script>
-<![endif]-->
 </head>
 <%
 	String name="";
@@ -43,7 +42,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	
  %>
 <body>
-    <!--nav-->
+	<div id="header">
+      <h1>留言界面</h1>   
+    </div>
+    
     <div id="nav">
         <%
     		int tag=-1;
@@ -53,35 +55,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		}
       	%>
          <ul>
-         <li><a href="index.jsp">首页</a></li>
-		<li><a href="<%-- <%=flag %> --%>MessageView">留言列表</a></li>
-         <li><a href="guestbook.jsp">发表留言</a></li>
-         <li><a href="lianjie.jsp">友情链接</a></li>
-         <% if(tag == -1){ %>
-         <li><a href="UserLogin.jsp">用户登录</a></li>
-         <%} %>
-         <% if(tag == 1){%>
-         <li><a href="LogoutServlet">退出登录</a></li>
-         <%} %>
-         <% if(tag == 0){%>
-         <li><a href="LogoutServlet">退出登录</a></li>
-         <%} %>
-         <%if(tag == -1){ %>
-         <li><a href="login.jsp">管理员登录</a></li>
-         <%} %>
-         <div class="clear"></div>
-        </ul>
+	         <li><a href="index.jsp">首页</a></li>
+			 <li><a href="<%-- <%=flag %> --%>MessageView">留言列表</a></li>
+	         <li><a href="guestbook.jsp">发表留言</a></li>
+	         <% if(tag == -1){ %>
+	         	<li><a href="UserLogin.jsp">用户登录</a></li>
+	         <%} %>
+	         <% if(tag == 1){%>
+	         	<li><a href="LogoutServlet">退出登录</a></li>
+	         <%} %>
+	         <% if(tag == 0){%>
+	         	<li><a href="LogoutServlet">退出登录</a></li>
+	         <%} %>
+	         <%if(tag == -1){ %>
+	         	<li><a href="login.jsp">管理员登录</a></li>
+	         <%} %>
+	         <div class="clear"></div>
+          </ul>
       </div>
-      </div>
-       <!--nav end-->
-    <!--content start-->
-    <div id="content">
+    <div id="content" >
        <!--left-->
          <div class="left">
            <div class="weizi">
            <div class="wz_text">当前位置：<a href="index.jsp">首页</a>><h1>发表留言</h1></div>
            </div>
-          <div class="wz1">
+          <div class="wz1" align="center">
            	<form action="DoAddMessage" method="post">
            		<table>
            		<tr>

@@ -1,26 +1,37 @@
-<%@ page language="java" import="java.util.*,bean.*,dao.*,servlet.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*,bean.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 
-
-<!DOCTYPE HTML>
-<html lang="zh-CN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>关于</title>
+<title>首页</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link rel="stylesheet" href="css/index.css"/>
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/style.css"/><link rel="stylesheet" href="css/style2.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
 <script type="text/javascript" src="js/jquery1.42.min.js"></script>
 <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript"></script>
 </head>
 <% String flag; 
 	LoginBean login=(LoginBean)session.getAttribute("login");
 	  
 	 %>
 <body>
+      <!--header start-->
+    <div id="header">
+      <h1>首页</h1>   
+    </div>
+     <!--header end-->
     <!--nav-->
-     <div id="nav">
-     <%
+    <div id="nav">
+    <%
     		int tag=-1;
     		LoginBean l = (LoginBean) session.getAttribute("login");
     		if (l == null){
@@ -28,11 +39,10 @@
     			tag = l.getAuth();
     		}
       %>
-         <ul>
-         <li><a href="index.jsp">首页</a></li>
-		<li><a href="<%-- <%=flag %> --%>MessageView">留言列表</a></li>
+        <ul>
+         <li><a  href="index.jsp">首页</a></li>
+		 <li><a href="MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
-         <li><a href="lianjie.jsp">友情链接</a></li>
          <% if(tag == -1){ %>
          <li><a href="UserLogin.jsp">用户登录</a></li>
          <%} %>
@@ -47,31 +57,16 @@
          <%} %>
          <div class="clear"></div>
         </ul>
-      </div>
+     </div>
        <!--nav end-->
     <!--content start-->
     <div id="content">
        <!--left-->
-         <div class="left" id="about_me">
+         <div class="left">
            <div class="weizi">
-           <div class="wz_text">当前位置：<a href="index.jsp">首页</a>><h1>关于系统</h1></div>
+           <div class="wz_text">当前位置：<a href="index.jsp">首页</a></div>
            </div>
-           <div class="about_content">
-            
-           </div>
-         </div>
-         <!--end left -->
-         <div class="clear"></div>
-         
-    </div>
-    <!--content end-->
-    <!--footer-->
-    <div id="footer">
-     <p></p>
-    </div>
-    <!--footer end-->
-    <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
-    <script  type="text/javascript" src="js/nav.js"></script>
+		</div>
+	</div>
 </body>
 </html>
-
