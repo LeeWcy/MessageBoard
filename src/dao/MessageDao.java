@@ -320,8 +320,8 @@ public class MessageDao {
 			pstmt.setString(2, password); 
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				login.setAdminName(rs.getString(1));
-				login.setPassword(rs.getString(2));
+				login.setAdminName(rs.getString(2));
+				login.setPassword(rs.getString(3));
 				login.setAccount(rs.getString(4));
 				login.setAuth(0);
 				return login;

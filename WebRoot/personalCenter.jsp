@@ -17,8 +17,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
 </head>
 	<%
-	int pageNo=Integer.parseInt( request.getAttribute("pageNo").toString());
-	int pageLa=Integer.parseInt(request.getAttribute("page").toString()); 
 	LoginBean l = (LoginBean) session.getAttribute("login");
 	 %>
 <body>
@@ -90,12 +88,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }    
             %>
          <!--left end-->
-      <td colspan="7" rowspan="2" align="right">
-           <a href="MessageView?pageNo=<%=pageNo>1?(pageNo-1):1 %>">首页</a> 
-           <a href="MessageView?pageNo=<%=pageNo-1 %>">上一页</a>
-           <a href="MessageView?pageNo=<%=pageNo<pageLa?(pageNo+1):pageLa %>">下一页</a>      
-           <a href="MessageView?pageNo=<%=pageLa %>">尾页</a>
-      </td>
       </div>
       </div>
     <!--footer end-->

@@ -22,15 +22,16 @@ public class ReplyDao {
 		List<ReplyBean> replyList = new ArrayList<ReplyBean>();
 		try {
 			con = DBconn.getConn();
-			sql = "select * from reply where account='" + name + "'";
+			sql = "select * from reply where name='" + name + "'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				ReplyBean mb = new ReplyBean();
 				mb.setID(rs.getInt("id"));
-				mb.setName(rs.getString("Name"));
-				mb.setReplyContent(rs.getString("ReplyContent"));
-				mb.setReplyDate1(rs.getString("replyDate1"));
+				mb.setName(rs.getString(2));
+				mb.setReplyContent(rs.getString(3));
+				mb.setReplyDate1(rs.getString(4));
+				mb.setMsgId(rs.getInt("MsgId"));
 				replyList.add(mb);
 			}
 		} catch (SQLException e) {
@@ -80,15 +81,16 @@ public class ReplyDao {
 		List<ReplyBean> replyList = new ArrayList<ReplyBean>();
 		try {
 			con = DBconn.getConn();
-			sql = "select * from reply where msgid='" + id + "' ORDER BY id";
+			sql = "select * from reply where msgid='" + id + "'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				ReplyBean mb = new ReplyBean();
-				mb.setID(rs.getInt("id"));
+				mb.setID(rs.getInt(1));
 				mb.setName(rs.getString("Name"));
 				mb.setReplyContent(rs.getString("ReplyContent"));
 				mb.setReplyDate1(rs.getString("Replydate"));
+				mb.setMsgId(rs.getInt(5));
 				replyList.add(mb);
 			}
 

@@ -24,18 +24,18 @@ public class PersonalCenter extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		MessageDao note = new MessageDao();
 		ReplyDao note1 = new ReplyDao();
-		LoginBean login = (LoginBean) session.getAttribute("login");
-		String name = login.getAdminName();
 		try {
+			HttpSession session = request.getSession();
+		    LoginBean login = (LoginBean) session.getAttribute("login");
+		    String name = login.getAdminName();
 			List<MessageBean> list = note.getMyMessages(name);
 			request.setAttribute("message", list);
 			if (login != null) {
 				List<ReplyBean> list1 = note1.getMyReplys(name);
 				request.setAttribute("reply", list1);
-				request.getRequestDispatcher("personalcenter.jsp").forward(
+				request.getRequestDispatcher("personalCenter.jsp").forward(
 						request, response);
 			}
 		} catch (Exception e) {
