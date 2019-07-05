@@ -44,6 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <li><a  href="index.jsp">首页</a></li>
 		 <li><a href="MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
+         <li><a href="PersonalCenter">个人中心</a></li>
           <li><a href="LogoutServlet">退出登录</a></li>
    		<form action="MessageList" method="post">
 	   		<input type="text" name="search" id="search"/>
@@ -86,24 +87,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <span class="left yd"><a href="DetailsMessage?id=<%=bean2.getID() %>" title="阅读全文">详情>></a>
                </span>
                 <div class="clear"></div>
-               </p>
                </dd>
-               <div class="clear"></div>
              </dl>
            
            <!--wz end-->
-            <!--wz-->
             <%
             }
             %>
-             </div>
+           </div>
+          </div>
          <!--left end-->
-       <tr><td colspan="7" rowspan="2" align="right">
+         <br><br>
             <a href="MessageView?pageNo=<%=pageNo>1?(pageNo-1):1 %>">首页</a> 
-             <a href="MessageView?pageNo=<%=pageNo-1 %>">上一页</a>
-              <a href="MessageView?pageNo=<%=pageNo<pageLa?(pageNo+1):pageLa %>">下一页</a>      
-           <a href="MessageView?pageNo=<%=pageLa %>">尾页</a></td>
-            </tr>
+            <a href="MessageView?pageNo=<%=pageNo-1 %>">上一页</a>
+            <a href="MessageView?pageNo=<%=pageNo<pageLa?(pageNo+1):pageLa %>">下一页</a>      
+            <a href="MessageView?pageNo=<%=pageLa %>">尾页</a>
+       </div>
+       </div>   
     <!--footer end-->
     <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
     <script  type="text/javascript" src="js/nav.js"></script>

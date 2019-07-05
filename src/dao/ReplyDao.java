@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.MessageBean;
 import bean.ReplyBean;
 
 public class ReplyDao {
@@ -17,30 +18,30 @@ public class ReplyDao {
 	
 	
 
-//	public List<ReplyBean> getReplys() {
-//		List<ReplyBean> replyList = new ArrayList<ReplyBean>();
-//		try {
-//			con = DBconn.getConn();
-//			sql = "select * from reply ORDER BY id";
-//			pstmt = con.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			while (rs.next()) {
-//				ReplyBean mb = new ReplyBean();
-//				mb.setID(rs.getInt("id"));
-//				mb.setName(rs.getString("Name"));
-//				mb.setReplyContent(rs.getString("ReplyContent"));
-//				mb.setReplyDate1(rs.getString("replyDate1"));
-//				replyList.add(mb);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			DBconn.closeResultSet(rs);
-//			DBconn.closeStatement(pstmt);
-//			DBconn.CloseConn();
-//		}
-//		return replyList;
-//	}
+	public List<ReplyBean> getMyReplys(String name) {
+		List<ReplyBean> replyList = new ArrayList<ReplyBean>();
+		try {
+			con = DBconn.getConn();
+			sql = "select * from reply where account='" + name + "'";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ReplyBean mb = new ReplyBean();
+				mb.setID(rs.getInt("id"));
+				mb.setName(rs.getString("Name"));
+				mb.setReplyContent(rs.getString("ReplyContent"));
+				mb.setReplyDate1(rs.getString("replyDate1"));
+				replyList.add(mb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBconn.closeResultSet(rs);
+			DBconn.closeStatement(pstmt);
+			DBconn.CloseConn();
+		}
+		return replyList;
+	}
 
 	public int reply(ReplyBean replybean, int id) {
 		int re = 0;

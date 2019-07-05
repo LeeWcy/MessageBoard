@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              
                <dd>
                  <p class="dd_text_1"><%=bean2.getMessageContent() %>></p>
-                <form action="OperationServlet?flag=<%="reply" %>&id=<%=bean2.getID() %>" method="post"><p class="dd_text_1"><textarea name="replyContent"></textarea>
+                <form action="OperationServlet?flag=<%="reply" %>&id=<%=bean2.getID()%>" method="post"><p class="dd_text_1"><textarea name="replyContent"></textarea>
                	
                </p>
                <p class="dd_text_2">
@@ -56,9 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <span class="left fl">主题：<%=bean2.getMessageThem() %></span><span class="left yd"><a><input type="submit" value="回复" /></a>
                </span></form>
                 <div class="clear"></div>
-               </p>
                </dd>
-               <div class="clear"></div>
              </dl>
             </div>
            <!--wz end-->

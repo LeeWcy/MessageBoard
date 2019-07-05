@@ -43,6 +43,33 @@ public class MessageDao {
 		}
 		return messageList;
 	}
+	
+	public List<MessageBean> getMyMessages(String account) {
+		List<MessageBean> messageList = new ArrayList<MessageBean>();
+		try {
+			con = DBconn.getConn();
+			sql = "select * from message where account='" + account + "'";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				MessageBean mb = new MessageBean();
+				mb.setID(rs.getInt("id"));
+				mb.setName(rs.getString("Name"));
+				mb.setMessageThem(rs.getString("MessageThem"));
+				mb.setMessgaeTitle(rs.getString("MessageTitle"));
+				mb.setMessageContent(rs.getString("MessageContent"));
+				mb.setDate1(rs.getString("udate"));
+				messageList.add(mb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBconn.closeResultSet(rs);
+			DBconn.closeStatement(pstmt);
+			DBconn.CloseConn();
+		}
+		return messageList;
+	}
 
 
 	public int add(MessageBean messagebean) {
