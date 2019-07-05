@@ -21,6 +21,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	int pageLa=Integer.parseInt(request.getAttribute("page").toString()); 
 	 %>
 <body>
+<div id="header">
+      <h1>留言列表</h1>
+      </div>
     <!--nav-->
     <div id="nav">
     
@@ -28,10 +31,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		
 
     		LoginBean l = (LoginBean) session.getAttribute("login");
-    		if(l != null)
-    		{
-    			response.sendRedirect("index.jsp");
-    		}
     		int tag=-1;
     		if (l == null){
     		}else{
@@ -57,7 +56,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <%if(tag == -1){ %>
          <li><a href="login.jsp">管理员登录</a></li>
          <%} %>
-          <form action="MessageList" method="post">
+         <div class="clear"></div>
+        </ul>
+      </div>
+      
+      <div class="order-and-search" align="center">
+    	<form action="MessageList" method="post">
 	   		<input type="text" name="search" id="search"/>
 	   		<input type="submit" value="搜索" />
    		</form> 
@@ -68,10 +72,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<form action="OrderByReply" method="post">
 	   		<input type="submit" name="ByReply" value="按回复数排序" />
    		</form> 
-         <div class="clear"></div>
-        </ul>
-      </div>
-      </div>
+         
+    	</div>
+      
        <!--nav end-->
        
     <!--content start-->
@@ -95,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <dd>
                <p class="dd_text_2">
                <span class="left author"><%=bean2.getName() %></span><span class="left sj"><%=bean2.getDate1() %></span>
-               <span class="left yd"><a href="OperationServlet?flag=<%="XG"%>&&id=<%= bean2.getID()%>" title="阅读全文">修改</a>
+               <span class="left yd"><a href="OperationServlet?flag=<%="XG"%>&&id=<%= bean2.getID()%>" >修改</a>
                </span>
                <span class="left yd">
                	<a href="OperationServlet?flag=<%="HF"%>&&id=<%= bean2.getID()%>">回复</a></span>
@@ -105,7 +108,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                	<%} %>
                	</span>
                 <div class="clear"></div>
-               </p>
                </dd>
                <div class="clear"></div>
              </dl>
@@ -117,12 +119,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }    
             %>
          <!--left end-->
-      <tr><td colspan="7" rowspan="2" align="right">
-           <a href="MessageView?pageNo=<%=pageNo>1?(pageNo-1):1 %>">首页</a> 
-             <a href="MessageView?pageNo=<%=pageNo-1 %>">上一页</a>
-              <a href="MessageView?pageNo=<%=pageNo<pageLa?(pageNo+1):pageLa %>">下一页</a>      
-           <a href="MessageView?pageNo=<%=pageLa %>">尾页</a></td>
-            </tr> 
+      <div align="center">
+         	<tr>
+	       		<td colspan="7" rowspan="2">
+		            <a href="MessageView?pageNo=<%=pageNo>1?(pageNo-1):1 %>">首页&nbsp;&nbsp;</a> 
+		            <a href="MessageView?pageNo=<%=pageNo-1 %>">上一页&nbsp;&nbsp;</a>
+		            <a href="MessageView?pageNo=<%=pageNo<pageLa?(pageNo+1):pageLa %>">下一页&nbsp;&nbsp;</a>      
+		            <a href="MessageView?pageNo=<%=pageLa %>">尾页</a>
+		        </td>
+            </tr>
+         </div>
+        </div>>
     <!--footer end-->
     <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
     <script  type="text/javascript" src="js/nav.js"></script>
