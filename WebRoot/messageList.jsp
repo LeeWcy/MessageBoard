@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--header start-->
     <div id="header">
       <h1>留言列表</h1>
-      
+      </div>
     
      <!--header end-->
     <!--nav-->
@@ -70,10 +70,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   		<input type="submit" name="ByReply" value="按回复数排序" />
    		</form> 
          
-        </ul>
     </div>
       
-      </div>
+      
        <!--nav end-->
        
     <!--content start-->
