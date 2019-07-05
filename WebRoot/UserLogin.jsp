@@ -32,8 +32,7 @@ function reloadImage(t){
 <body>
       <!--header start-->
     <div id="header">
-      <h1>登录界面</h1>
-      <p>青春是打开了,就合不上的书。人生是踏上了，就回不了头的路，爱情是扔出了，就收不回的赌注。</p>    
+      <h1>登录界面</h1>   
     </div>
      <!--header end-->
     <!--nav-->
@@ -42,7 +41,6 @@ function reloadImage(t){
          <li><a  href="index.jsp">首页</a></li>
 		 <li><a href="MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
-         <li><a href="lianjie.jsp">友情链接</a></li>
          <li><a href="UserLogin.jsp">用户登录</a></li>
           <li><a href="login.jsp">管理员登录</a></li>
          <div class="clear"></div>
@@ -78,6 +76,7 @@ function reloadImage(t){
           </form>
           </table></center>
           </div>
-</div>
+		</div>
+	</div>
 </body>
 </html>
