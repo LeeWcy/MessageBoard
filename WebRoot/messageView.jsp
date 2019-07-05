@@ -48,9 +48,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <li><a href="UserLogin.jsp">用户登录</a></li>
          <%} %>
          <% if(tag == 1){%>
+         <li><a href="PersonalCenter">个人中心</a></li>
          <li><a href="LogoutServlet">退出登录</a></li>
          <%} %>
          <% if(tag == 0){%>
+         <li><a href="PersonalCenter">个人中心</a></li>
          <li><a href="LogoutServlet">退出登录</a></li>
          <%} %>
          <%if(tag == -1){ %>

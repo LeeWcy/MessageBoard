@@ -46,9 +46,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <li><a href="UserLogin.jsp">用户登录</a></li>
          <%} %>
          <% if(tag == 1){%>
+         <li><a href="PersonalCenter">个人中心</a></li>
          <li><a href="LogoutServlet">退出登录</a></li>
          <%} %>
          <% if(tag == 0){%>
+         <li><a href="PersonalCenter">个人中心</a></li>
          <li><a href="LogoutServlet">退出登录</a></li>
          <%} %>
          <%if(tag == -1){ %>
@@ -115,15 +117,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            </div>
           </div>
          <!--left end-->
-<<<<<<< HEAD
-         <br><br>
-            <a href="MessageView?pageNo=<%=pageNo>1?(pageNo-1):1 %>">首页</a> 
-            <a href="MessageView?pageNo=<%=pageNo-1 %>">上一页</a>
-            <a href="MessageView?pageNo=<%=pageNo<pageLa?(pageNo+1):pageLa %>">下一页</a>      
-            <a href="MessageView?pageNo=<%=pageLa %>">尾页</a>
-       </div>
-       </div>   
-=======
          <div align="center">
          	<tr>
 	       		<td colspan="7" rowspan="2">
@@ -134,7 +127,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        </td>
             </tr>
          </div>
->>>>>>> c3d3a27494774aaab594b1727b13b3c27592dee5
     <!--footer end-->
     <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
     <script  type="text/javascript" src="js/nav.js"></script>
