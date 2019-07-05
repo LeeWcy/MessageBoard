@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.MessageBean;
+import bean.ReplyBean;
 import dao.MessageDao;
+import dao.ReplyDao;
 
 public class DetailsMessage extends HttpServlet {
 
@@ -18,10 +20,13 @@ public class DetailsMessage extends HttpServlet {
 
 		response.setContentType("text/html");
 		MessageDao note = new MessageDao();
+		ReplyDao note1 = new ReplyDao();
 		try {
 			int DM = new Integer(request.getParameter("id"));
 			List<MessageBean> list = note.detailMessages(DM);
+			List<ReplyBean> list1 = note1.getMessageReply(DM);
 			request.setAttribute("message", list);
+			request.setAttribute("reply", list1);
 			request.getRequestDispatcher("detailsMessage.jsp").forward(request,
 					response);
 		} catch (Exception e) {
