@@ -53,6 +53,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   		<input type="submit" name="1" value="按时间升序" />
 	   		<input type="submit" name="2" value="按时间降序" />
    		</form> 
+   		<form action="OrderByReply" method="post">
+	   		<input type="submit" name="ByReply" value="按回复数排序" />
+   		</form> 
          <div class="clear"></div>
         </ul>
       </div>

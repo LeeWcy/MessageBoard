@@ -42,24 +42,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              <dl>
                <dd>
                  <p class="dd_text_1">内容：<%=bean2.getMessageContent() %></p>
-               <p class="dd_text_2">
-               <p class="left author">作者：<%=bean2.getName() %> </p><p class="left sj">时间：<%=bean2.getDate1() %> </p>
-               <p class="left fl">主题：<%=bean2.getMessageThem() %></p><p class="left yd"><a href="MessageView" title="返回">返回</a>
-               </p>
+                 <p class="dd_text_2">
+                 <p class="left author">作者：<%=bean2.getName() %> </p>
+                 <p class="left sj">时间：<%=bean2.getDate1() %> </p>
+                 <p class="left fl">主题：<%=bean2.getMessageThem() %></p>
+                 <% if(bean2.getReplyNum()!=null) {%>
+                 	<p class="left fl">回复数：<%=bean2.getReplyNum() %></p>
+                 <%} %>  
+                 <p class="left yd"><a href="MessageView" title="返回">返回</a></p>
                 <div class="clear"></div>
                </dd>
              </dl>
              <% List<ReplyBean> beanr=(List<ReplyBean>)request.getAttribute("reply");
-			for(ReplyBean beanr2 : beanr)
-			{ 
- 			%>
- 			<p class="dd_text_1">
- 			  <br>回复编号：<%=beanr2.getID() %>
- 			  <br>回复内容：<%=beanr2.getReplyContent() %>
- 			  <br>回复人：<%=beanr2.getName() %>
- 			  <br>回复时间: <%=beanr2.getReplyDate1() %>
- 			</p>
- 			<%} %>
+             if(beanr != null){
+				for(ReplyBean beanr2 : beanr)
+				{ 
+ 			 %>
+	 			<p class="dd_text_1">
+	 			  <br>回复编号：<%=beanr2.getID() %>
+	 			  <br>回复内容：<%=beanr2.getReplyContent() %>
+	 			  <br>回复人：<%=beanr2.getName() %>
+	 			  <br>回复时间: <%=beanr2.getReplyDate1() %>
+	 			</p>
+ 			<%} }%>
             </div>
            <!--wz end-->
               <%} %>               

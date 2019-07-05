@@ -16,7 +16,7 @@ public class DBconn {
 			conn = DriverManager
 					.getConnection(
 
-							"jdbc:mysql://localhost:3306/courseDesign","root", "123456");
+							"jdbc:mysql://localhost:3306/courseDesign","root", "icanplay1");
 			return conn;
 		} catch (Exception e) {
 			e.printStackTrace();
