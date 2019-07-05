@@ -57,9 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <span class="left "><a><input type="submit" value="回复" /></a>
                </span></form>
                 <div class="clear"></div>
-               </p>
                </dd>
-               <div class="clear"></div>
              </dl>
             </div>
            <!--wz end-->

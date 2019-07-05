@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
+import bean.LoginBean;
 import bean.MessageBean;
 import bean.ReplyBean;
 import dao.MessageDao;
@@ -32,6 +33,7 @@ public class OperationServlet extends HttpServlet {
 		ReplyBean replybean = new ReplyBean();
 		int id = new Integer(request.getParameter("id"));
 		String flag = request.getParameter("flag");
+		LoginBean login = (LoginBean) request.getSession().getAttribute("login");
 		MessageDao dao = new MessageDao();
 		ReplyDao dao1 = new ReplyDao();
 		String pageNo = "1";
@@ -83,6 +85,7 @@ public class OperationServlet extends HttpServlet {
 		}
 		else if (flag.equals("reply")) {
 			String replyContent = request.getParameter("replyContent");
+			String name = login.getAdminName();
 			Date date = new Date();
 			SimpleDateFormat sdformat = new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss");
@@ -90,6 +93,7 @@ public class OperationServlet extends HttpServlet {
 			System.out.println(id);
 			replybean.setReplyContent(replyContent);
 			replybean.setReplyDate1(replyDate);
+			replybean.setName(name);
 			int n = dao1.reply(replybean, id);
 			if (n > 0) {
 				List<MessageBean> list = dao.detailMessages(id);

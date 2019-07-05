@@ -51,14 +51,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                </dd>
              </dl>
              <% List<ReplyBean> beanr=(List<ReplyBean>)request.getAttribute("reply");
-			for(ReplyBean beanr2 : beanr)
+			for(ReplyBean wer : beanr)
 			{ 
  			%>
  			<p class="dd_text_1">
- 			  <br>回复编号：<%=beanr2.getID() %>
- 			  <br>回复内容：<%=beanr2.getReplyContent() %>
- 			  <br>回复人：<%=beanr2.getName() %>
- 			  <br>回复时间: <%=beanr2.getReplyDate1() %>
+ 			  <br>回复编号：<%=wer.getID() %>
+ 			  <br>原贴编号：<%=wer.getMsgId() %>
+ 			  <br>回复内容：<%=wer.getReplyContent() %>
+ 			  <br>回复人：<%=wer.getName() %>
+ 			  <br>回复时间: <%=wer.getReplyDate1() %>
  			</p>
  			<%} %>
             </div>
