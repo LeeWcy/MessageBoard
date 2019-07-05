@@ -19,15 +19,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <% int pageNo=Integer.parseInt( request.getAttribute("pageNo").toString());
 	int pageLa=Integer.parseInt(request.getAttribute("page").toString()); %>
 <%
-	LoginBean l = (LoginBean) session.getAttribute("login");
- 		if (l == null){
- 			//response.sendRedirect("index.jsp");
- 		}else{
- 			if(l.getAuth()==0){
- 				response.sendRedirect("MessageView");
- 			}
- 		}
-%>
+    		
+
+    		LoginBean l = (LoginBean) session.getAttribute("login");
+    		int tag=-1;
+    		if (l == null){
+    		}else{
+    			tag = l.getAuth();
+    		}
+    		
+    	%>
 <body>
     <!--header start-->
     <div id="header">
@@ -41,7 +42,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <li><a  href="index.jsp">首页</a></li>
 		 <li><a href="MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
+         <% if(tag == -1){ %>
+         <li><a href="UserLogin.jsp">用户登录</a></li>
+         <%} %>
+         <% if(tag == 1){%>
          <li><a href="LogoutServlet">退出登录</a></li>
+         <%} %>
+         <% if(tag == 0){%>
+         <li><a href="LogoutServlet">退出登录</a></li>
+         <%} %>
+         <%if(tag == -1){ %>
+         <li><a href="login.jsp">管理员登录</a></li>
+         <%} %>
          <div class="clear"></div>
     </div>
     

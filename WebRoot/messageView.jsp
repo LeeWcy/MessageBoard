@@ -19,17 +19,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<%
 	int pageNo=Integer.parseInt( request.getAttribute("pageNo").toString());
 	int pageLa=Integer.parseInt(request.getAttribute("page").toString()); 
-	LoginBean l = (LoginBean) session.getAttribute("login");
 	 %>
 <body>
     <!--nav-->
     <div id="nav">
+    
+    <%
+    		
+
+    		LoginBean l = (LoginBean) session.getAttribute("login");
+    		if(l != null)
+    		{
+    			response.sendRedirect("index.jsp");
+    		}
+    		int tag=-1;
+    		if (l == null){
+    		}else{
+    			tag = l.getAuth();
+    		}
+    		
+    	%>
+    
         <ul>
         
          <li><a  href="index.jsp">首页</a></li>
 		 <li><a href="MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
-          <li><a href="LogoutServlet">退出登录</a></li>
+          <% if(tag == -1){ %>
+         <li><a href="UserLogin.jsp">用户登录</a></li>
+         <%} %>
+         <% if(tag == 1){%>
+         <li><a href="LogoutServlet">退出登录</a></li>
+         <%} %>
+         <% if(tag == 0){%>
+         <li><a href="LogoutServlet">退出登录</a></li>
+         <%} %>
+         <%if(tag == -1){ %>
+         <li><a href="login.jsp">管理员登录</a></li>
+         <%} %>
           <form action="MessageList" method="post">
 	   		<input type="text" name="search" id="search"/>
 	   		<input type="submit" value="搜索" />
