@@ -28,14 +28,13 @@ public class LoginServletUser extends HttpServlet{
 		LoginBean login = new LoginBean();
 		MessageDao logindao = new MessageDao();
 		login = logindao.checkuserlogin(adminName, password);
-		
 		if (login == null ) {
 			System.out.println("’Àªß√‹¬Î¥ÌŒÛ");
 		}
 		if (login != null && authCode.equals(piccode)) {
 			List<MessageBean> list = new ArrayList<MessageBean>();
 			list = logindao.getMessages();
-			request.setAttribute("list", list);
+			request.setAttribute("message", list);
 			session.setAttribute("login", login);
 			response.sendRedirect("MessageView");
 		}else {

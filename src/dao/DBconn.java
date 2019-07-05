@@ -17,6 +17,7 @@ public class DBconn {
 					.getConnection(
 
 							"jdbc:mysql://localhost:3306/coursedesign?characterEncoding=utf8","root", "icanplay1");
+
 			return conn;
 		} catch (Exception e) {
 			e.printStackTrace();

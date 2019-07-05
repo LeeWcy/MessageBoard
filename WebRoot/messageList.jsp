@@ -46,9 +46,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <li><a href="UserLogin.jsp">用户登录</a></li>
          <%} %>
          <% if(tag == 1){%>
+         <li><a href="PersonalCenter">个人中心</a></li>
          <li><a href="LogoutServlet">退出登录</a></li>
          <%} %>
          <% if(tag == 0){%>
+         <li><a href="PersonalCenter">个人中心</a></li>
          <li><a href="LogoutServlet">退出登录</a></li>
          <%} %>
          <%if(tag == -1){ %>
@@ -105,17 +107,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <span class="left yd"><a href="DetailsMessage?id=<%=bean2.getID() %>">详情>></a>
                </span>
                 <div class="clear"></div>
-               </p>
                </dd>
-               <div class="clear"></div>
              </dl>
            
            <!--wz end-->
-            <!--wz-->
             <%
             }
             %>
-             </div>
+           </div>
+          </div>
          <!--left end-->
          <div align="center">
          	<tr>

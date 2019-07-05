@@ -43,6 +43,12 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PersonalCenter</servlet-name>
+    <servlet-class>servlet.PersonalCenter</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>OperationServlet</servlet-name>
     <servlet-class>servlet.OperationServlet</servlet-class>
   </servlet>
@@ -121,6 +127,10 @@
   <servlet-mapping>
     <servlet-name>LoginServlet1</servlet-name>
     <url-pattern>/LoginServlet1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PersonalCenter</servlet-name>
+    <url-pattern>/PersonalCenter</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>OperationServlet</servlet-name>

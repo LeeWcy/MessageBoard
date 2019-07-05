@@ -32,7 +32,6 @@ public class DoAddMessage extends HttpServlet {
 		Date date = new Date();
 		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String Date = sdformat.format(date);
-		String replyDate = "";
 		MessageBean messagebean = new MessageBean();
 		messagebean.setName(name);
 		messagebean.setMessageThem(messageThem);

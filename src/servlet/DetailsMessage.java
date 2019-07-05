@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.LoginBean;
 import bean.MessageBean;
 import bean.ReplyBean;
 import dao.MessageDao;
@@ -19,6 +20,7 @@ public class DetailsMessage extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
+		LoginBean login = (LoginBean) request.getSession().getAttribute("login");
 		MessageDao note = new MessageDao();
 		ReplyDao note1 = new ReplyDao();
 		try {
@@ -27,8 +29,12 @@ public class DetailsMessage extends HttpServlet {
 			List<ReplyBean> list1 = note1.getMessageReply(DM);
 			request.setAttribute("message", list);
 			request.setAttribute("reply", list1);
-			request.getRequestDispatcher("detailsMessage.jsp").forward(request,
-					response);
+			if (login != null) {
+				request.getRequestDispatcher("details.jsp").forward(request,
+						response);
+			} else
+				request.getRequestDispatcher("detailsMessage.jsp").forward(request,
+						response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
