@@ -30,6 +30,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 <li><a href="MessageView">留言列表</a></li>
          <li><a href="guestbook.jsp">发表留言</a></li>
           <li><a href="LogoutServlet">退出登录</a></li>
+          <form action="MessageList" method="post">
+	   		<input type="text" name="search" id="search"/>
+	   		<input type="submit" value="搜索" />
+   		</form> 
+   		<form action="OrderByTimeServlet" method="post">
+	   		<input type="submit" name="1" value="按时间升序" />
+	   		<input type="submit" name="2" value="按时间降序" />
+   		</form> 
+   		<form action="OrderByReply" method="post">
+	   		<input type="submit" name="ByReply" value="按回复数排序" />
+   		</form> 
          <div class="clear"></div>
         </ul>
       </div>
