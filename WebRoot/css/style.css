@@ -1,7 +1,9 @@
 /* CSS Document */
 @charset "gb2312";
 *{marigin:0px; padding:0px;}
-body{font-size:14px;font-family:"微软雅黑";background:#E3E3E5 url(../images/bg.jpg)  50% top scroll no-repeat;color:#5d5d5d;}
+
+body{font-size:15px;font-family:"Helvetica Neue";background:#E3E3E5 url(../images/2.jpg)  50% top scroll no-repeat;color:#5d5d5d;
+background-size:100% 100%; background-attachment: fixed;}
 a{text-decoration:none;}
 .left{float:left;}
 .right{float:right;}
@@ -9,42 +11,42 @@ a{text-decoration:none;}
 li{list-style:none;}
 img{display:block;border:0px;}
 /*end*/
-.weizi{width:900px;height:30px;line-height:30px; background:url("../images/weizi.png") 7px 5px no-repeat; background-color:#fff;
+.weizi{width:900px;height:30px;line-height:30px; background:url("../images/weizi.png") 7px 5px no-repeat ;
 border-bottom:1px solid #ccc;}
 .weizi .wz_text{font-size:16px;color:#444;padding-left:25px;}
 .weizi .wz_text h1{font-size:16px;color:#F00E71;display:inline;font-weight:500;}
 .weizi .wz_text a{color:#444;}
 .weizi .wz_text a:hover{text-decoration:underline;color:#f00;}
 /*about*/
-#content #about_me{width:900px;height:500px;background-color:#fff;}
+#content #about_me{width:900px;height:500px;}
 #about_me .about_content{width:900px;height:300px;margin-top:10px;padding:0 10px;}
-/*碎言碎语*/
+
 #say{width:950px;margin:5px auto;}
-#say .weizi{width:920px;height:28px;line-height:28px; background:url("../images/weizi.png") 7px 5px no-repeat; background-color:#fff;border-radius:3px;}
+#say .weizi{width:920px;height:28px;line-height:28px; background:url("../images/weizi.png") 7px 5px no-repeat; border-radius:3px;}
 .weizi .wz_text{font-size:16px;color:#444;padding-left:25px;}
 .weizi .wz_text h1{font-size:16px;color:#F00E71;display:inline;font-weight:500;}
 .weizi .wz_text a{color:#444;}
 .weizi .wz_text a:hover{text-decoration:underline;color:#f00;}
 .say_box {background:#f8f8f8;box-shadow: 0px 1px 0px rgba(255,255,255,.1), inset 0px 1px 1px rgba(214, 214, 214, 0.7);width:740px; border-radius:5px;position:relative; padding: 20px 0;
-margin:10px 0;font-size:14px;font-family:"宋体"; }
+margin:10px 0;font-size:14px;font-family:"微软雅黑"; }
 .say_box p {line-height:24px;padding:0 20px 20px ;}
-.say_box::before {content: "";width:0px;height:0px;border-style:solid;border-width:0px 0 20px 22px;border-color:transparent transparent transparent #fff;position:absolute;left:740px;top: 23px; }/* 三角形 */
-.say_box::after {content: "";width: 10px;height: 10px;border-radius: 50%;position:absolute;left:763px;top:16px;background:#CCCCCE;border: 2px solid #fff;transition:all 0.5s; }/* 圆形 */
-.say_box:hover::before {border-color:transparent transparent transparent #CECCCD }/* 三角形 */
-.say_box:hover::after {border:#fff 2px solid;background:#999; }/* 圆形 */
+.say_box::before {content: "";width:0px;height:0px;border-style:solid;border-width:0px 0 20px 22px;border-color:transparent transparent transparent #fff;position:absolute;left:740px;top: 23px; }/* 涓夎褰� */
+.say_box::after {content: "";width: 10px;height: 10px;border-radius: 50%;position:absolute;left:763px;top:16px;background:#CCCCCE;border: 2px solid #fff;transition:all 0.5s; }/* 鍦嗗舰 */
+.say_box:hover::before {border-color:transparent transparent transparent #CECCCD }
+.say_box:hover::after {border:#fff 2px solid;background:#999; }
 .say_box:hover {background: #f4f2f2;color:#333; text-shadow: #f7f7f7 1px 1px 1px }
 .dateview {position:absolute;left:785px;top:15px;width:125px;line-height:35px;background:#5EA51B;border-radius:0 30px;text-align:center;
 color:#fff;font-weight:bold;font-size:14px; }
-/*登录*/
+
 #login{ margin: 10px,auto;}
 #login p{margin: 8px auto; color: #AC9696;font-size: 24px; text-align: center;}
 #login form{ width: 300px;margin: 8px;height: auto;}
 #login_d{margin: 10px auto;}
 
 
-/*相册*/
+
 #content_xc{width:900px;margin:5px auto; background:#fff;opacity: 0.6;}
-#content_xc .weizi{width:900px;height:30px;line-height:30px; background:url("../images/weizi.png") 7px 5px no-repeat; background-color:#fff;
+#content_xc .weizi{width:900px;height:30px;line-height:30px; background:url("../images/weizi.png") 7px 5px no-repeat; 
 border-bottom:1px solid #ccc;}
 .weizi .wz_text{font-size:16px;color:#444;padding-left:25px;}
 .weizi .wz_text h1{font-size:16px;color:#F00E71;display:inline;font-weight:500;}
@@ -52,9 +54,9 @@ border-bottom:1px solid #ccc;}
 .weizi .wz_text a:hover{text-decoration:underline;color:#f00;}
 #content_xc .xc_content{width:900px;}
 .xc_content .con-bg{width:900px;background:#fff; margin:0 auto; overflow:hidden; padding-top:8px; padding-bottom:10px;filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);/*ie*/
--moz-box-shadow: 2px 2px 10px #909090;/*firefox*/
--webkit-box-shadow: 2px 2px 10px #909090;/*safari或chrome*/
-box-shadow:2px 2px 10px #909090;/*opera或ie9*/}
+-moz-box-shadow: 2px 2px 10px #909090;
+-webkit-box-shadow: 2px 2px 10px #909090;
+box-shadow:2px 2px 10px #909090;}
 .w960{width:900px;margin:0 auto;overflow:hidden;}
 .fl_lt{float:left !important;}
 .mt_10{margin-top:10px;}
@@ -74,7 +76,7 @@ span.bds_more{line-height:16px !important;}
 .w650 li a:hover span{color:#9c0f4a;}
 .w650 li a:hover{background:#fff;border:1px solid #c5c5c5;color:#9c0f4a;}
 .p_t{padding-top:7px;}
-/*学无止境*/
+
 #content #learn{width:730px;background:#fff;}
 #learn .l_content{width:710px;margin-top:10px;padding:0 10px;}
 #learn .l_content .wz{width:725px;margin:5px 0px 10px 0px;color:#444;}
@@ -92,7 +94,8 @@ background:url("../images/sj.jpg") 5px 7px no-repeat;padding-left:25px;margin-le
 #news .news_content .news_top .author{display:block;width:60px;height:30px; 
 background:url("../images/tx.jpg") 5px 9px no-repeat;padding-left:25px;margin-left:20px;}
 #news .news_content .news_text{width:710px;}
-/*留言板*/
+
+
 #content #guestbook{width:730px;height:500px;background:#fff;}
 #guestbook .g_content{width:710px;height:300px;margin-top:10px;padding:0 10px;}
 
