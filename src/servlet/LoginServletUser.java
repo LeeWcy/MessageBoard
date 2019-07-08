@@ -15,6 +15,11 @@ import bean.MessageBean;
 import dao.MessageDao;
 
 public class LoginServletUser extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();

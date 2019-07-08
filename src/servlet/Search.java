@@ -12,6 +12,11 @@ import bean.MessageBean;
 import dao.MessageDao;
 
 public class Search extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		MessageDao searchDao = new MessageDao();
