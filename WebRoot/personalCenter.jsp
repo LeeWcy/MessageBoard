@@ -77,11 +77,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <span class="left author">&nbsp;&nbsp;&nbsp;&nbsp;用户：<%=bean2.getName() %></span>
                <span class="left sj">&nbsp;&nbsp;&nbsp;&nbsp;日期：<%=bean2.getDate1() %></span>
                <span class="left yd"><a href="OperationServlet?flag=<%="XG"%>&&id=<%= bean2.getID()%>">&nbsp;&nbsp;修改&nbsp;&nbsp;&nbsp;&nbsp;</a></span>
-               <span class="left yd"><a href="OperationServlet?flag=<%="HF"%>&&id=<%= bean2.getID()%>">回复</a></span>
-               	<%if(l != null)
-               		if(l.getAuth() != 1){%>
+               <span class="left yd"><a href="OperationServlet?flag=<%="HF"%>&&id=<%= bean2.getID()%>">回复&nbsp;&nbsp;&nbsp;&nbsp;</a></span>
                	<span class="left yd"><a href="OperationServlet?flag=<%="Delete"%>&&id=<%= bean2.getID()%>">删除</a>
-               	<%} %>
                	</span>
                 <div class="clear"></div>
                </dd>
