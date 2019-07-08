@@ -18,6 +18,11 @@ import dao.MessageDao;
 import dao.ReplyDao;
 
 public class OperationServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void right(){
 		 
         String msg="操作成功";
