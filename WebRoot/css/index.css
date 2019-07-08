@@ -1,7 +1,7 @@
 /* CSS Document */
 @charset "utf-8";
 *{margin:0; padding:0px;}
-body{font-size:14px;font-family:"微软雅黑";background:#E3E3E5 url(../images/bg.jpg)  50% top scroll no-repeat;color:#5d5d5d;}
+body{font-size:14px;font-family:"΢���ź�";background:#E3E3E5 url(../images/1.jpg)  50% top scroll no-repeat;color:#5d5d5d;}
 a{text-decoration:none;}
 .left{float:left;}
 .right{float:right;}
@@ -24,8 +24,8 @@ img{display:block;border:0px;}
 /*header end*/
 #content{width:900px;margin:3px auto;opacity: 0.6 }
 #c_left{width:900px; background:#fff;border-radius:1px;}
-#c_left .s_tuijian{width:900px;height:68px;margin-left:10px;background:url("../images/r_line.jpg") bottom left repeat-x;}
-.s_tuijian h2{width:650px;height:37px;background:url("../images/tj.png") no-repeat;padding:20px 0px 5px 60px;
+#c_left .s_tuijian{width:900px;height:68px;background:url("../images/r_line.jpg") bottom left repeat-x;}
+.s_tuijian h2{width:650px;height:37px;background:url("../images/s1.jpg") no-repeat;padding:20px 0px 5px 60px;
 color:#D242DF;font-size:18px;margin-left:5px;}
 .s_tuijian h2 span{color:#48D1CC;padding-left:3px;}
 
@@ -34,10 +34,10 @@ color:#D242DF;font-size:18px;margin-left:5px;}
 #login form{ width: 300px;margin: 8px;height: auto;}
 #login_d{margin: 10px auto;}
 
-
+.person-content{padding-left:20px;}
 .my_reply{padding-left:20px;}
 .order-and-search form{margin:10px 10px 10px 10px;}
-#c_left .content_text{width:730px;margin-top:5px;}
+#c_left .content_text{width:730px;margin-top:5px;margin-bottom: 20px;}
 #c_left .content_text .wz{width:725px;margin:5px 0px 10px 0px;color:#1D1A1A;}
 .wz h3{width:300px;height:30px;overflow:hidden;line-height:30px;font-size:17px;font-weight:500;padding-left:5px;color:#325EBD;}
 .wz h3 a{color:#D3535D;}
@@ -61,7 +61,7 @@ background:url("../images/sj.jpg") 5px 7px no-repeat;padding-left:25px;}
 text-align:center;padddding:2px 5px;border:1px solid #AC9696;border-radius:2px;}
 .wz dl dd .dd_text_2 .yd a:hover{color:#f36;}
 /*left end*/
-/*发表留言*/
+
 #c_left .content_text{width:730px;margin-top:10px;}
 #c_left .content_text .wz1{width:725px;margin:10px 0px 15px 0px;color:#1D1A1A;}
 

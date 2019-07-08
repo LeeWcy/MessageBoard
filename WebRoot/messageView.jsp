@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        </td>
             </tr>
          </div>
-        </div>>
+        </div>
     <!--footer end-->
     <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
     <script  type="text/javascript" src="js/nav.js"></script>

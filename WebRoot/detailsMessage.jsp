@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
     <!--header start-->
     <div id="header">
-      <h1>详情页面2</h1>
+      <h1>详情页面</h1>
     </div>
      <!--header end-->
     <!--content start-->

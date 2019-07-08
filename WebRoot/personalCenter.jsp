@@ -20,6 +20,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	LoginBean l = (LoginBean) session.getAttribute("login");
 	 %>
 <body>
+<div id="header">
+      <h1>个人中心</h1>
+      </div>
     <!--nav-->
     <div id="nav">
         <ul>
@@ -39,13 +42,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <div class="s_tuijian">
            <h2><%=l.getAdminName()%><span>页面</span></h2>
            </div>
-           <p>我的回复</p>           
+           <div class="person-content">
+           <p><strong>我的回复</strong></p>           
            <% 
            List<ReplyBean> beanr=(List<ReplyBean>)request.getAttribute("reply");
 			for(ReplyBean beanr2 : beanr)
 			{ 
  			%>
-            <p class="dd_text_1">
+            <p class="my_reply">
  			  <br>回复编号：<%=beanr2.getID() %>
  			  <br>回复内容：<%=beanr2.getReplyContent() %>
  			  <br>原贴编号：<%=beanr2.getMsgId()%><a href="OperationServlet?id=<%=beanr2.getMsgId() %>&&flag=<%="XQ" %>">查看原帖</a>
@@ -54,24 +58,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <%
             }    
             %>
-           <p>我的留言</p>
+            <br>
+            <br>
+           <p><strong>我的留言</strong></p>
+           <br>
            <% 
            List<MessageBean> bean=(List<MessageBean>)request.getAttribute("message");
 			for(MessageBean bean2 : bean)
 			{ 
  			%>
-          <div class="content_text">
+          <div class="my_reply">
            <!--wz-->
            <div class="wz">
-            <h3><a href="OperationServlet?id=<%=bean2.getID() %>&&flag=<%="XQ" %>" ><%=bean2.getMessgaeTitle() %></a></h3>
+            <h3><a href="OperationServlet?id=<%=bean2.getID() %>&&flag=<%="XQ" %>" >标题：<%=bean2.getMessgaeTitle() %></a></h3>
              <dl>  
                <dd>
-               <p class="dd_text_2">
-               <span class="left author"><%=bean2.getName() %></span><span class="left sj"><%=bean2.getDate1() %></span>
-               <span class="left yd"><a href="OperationServlet?flag=<%="XG"%>&&id=<%= bean2.getID()%>" title="阅读全文">修改</a>
-               </span>
-               <span class="left yd">
-               	<a href="OperationServlet?flag=<%="HF"%>&&id=<%= bean2.getID()%>">回复</a></span>
+               <p class="myreply">
+               <span class="left author">&nbsp;&nbsp;&nbsp;&nbsp;用户：<%=bean2.getName() %></span>
+               <span class="left sj">&nbsp;&nbsp;&nbsp;&nbsp;日期：<%=bean2.getDate1() %></span>
+               <span class="left yd"><a href="OperationServlet?flag=<%="XG"%>&&id=<%= bean2.getID()%>">&nbsp;&nbsp;修改&nbsp;&nbsp;&nbsp;&nbsp;</a></span>
+               <span class="left yd"><a href="OperationServlet?flag=<%="HF"%>&&id=<%= bean2.getID()%>">回复</a></span>
                	<%if(l != null)
                		if(l.getAuth() != 1){%>
                	<span class="left yd"><a href="OperationServlet?flag=<%="Delete"%>&&id=<%= bean2.getID()%>">删除</a>
@@ -87,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }    
             %>
          <!--left end-->
-      </div>
+         </div>
       </div>
     <!--footer end-->
     <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
